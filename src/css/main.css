@@ -1,0 +1,157 @@
+@import "../css/variables.css";
+/* NAVBAR */
+a {
+  text-decoration: none;
+}
+
+.navbar-frame {
+  height: 73px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-frame .navbar-left a {
+  width: 200.58px;
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.navbar-frame .navbar-left img {
+  padding-top: 7px;
+  width: 50px;
+  height: 50px;
+}
+.navbar-frame .navbar-left span {
+  color: rgba(17, 24, 39, 1);
+  font-family: "Inter";
+  font-style: Semi Bold;
+  font-size: 20px;
+  font-weight: 600;
+}
+.navbar-frame .navbar-links {
+  width: 320px;
+  height: 37px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--itemspacing-xxs, 32px);
+}
+.navbar-frame .navbar-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Medium;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: var(--lineheight-21, 21px);
+  letter-spacing: var(--letterspacing--0_18, -0.18px);
+  border-bottom: 2px solid transparent;
+}
+.navbar-frame .navbar-links a.active {
+  border-bottom: 2px solid var(--primary-500);
+  color: var(--primary-500);
+}
+.navbar-frame .navbar-links a:hover {
+  border-bottom: 2px solid var(--primary-500);
+  transition: 0.3s;
+}
+.navbar-right {
+  width: 250.1px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--itemspacing-xs, 10px);
+}
+
+.navbar-right .search-box {
+  width: 90px;
+  height: 21px;
+  padding-top: 5px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3px;
+
+  font-family: "Inter";
+  font-style: Regular;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+}
+.navbar-right .search-box input {
+  width: 70px;
+  border: none;
+  outline: none;
+}
+.navbar-right .search-box input::placeholder {
+  color: var(
+    --kevins-book-storebase44app-PaleSky,
+    var(--color-grey-46, rgba(107, 114, 128, 1))
+  );
+  font-size: 15px;
+}
+.navbar-right .icon-box {
+  padding-top: 5px;
+  position: relative;
+  width: 70px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.navbar-right .icon-box img {
+  width: 22px;
+  height: 22px;
+}
+
+.navbar-right .badge {
+  position: absolute;
+
+  top: 1px;
+  right: -4px;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--primary-500);
+  color: white;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.navbar-right .login-btn {
+  width: 74px;
+  height: 36px;
+  padding: 7.25px 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  border-radius: var(--cornerradius-9999, 9999px);
+  background: var(--text-primary);
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Medium;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: var(--lineheight-19_5, 19.5px);
+  letter-spacing: var(--letterspacing--0_18, -0.18px);
+  color: var(--bg-primary);
+}

@@ -8,12 +8,13 @@ import Wishlist from "../pages/wishlist";
 import Books from "../pages/books";
 import BookDetails from "../pages/bookDetails";
 import MyPage from "../pages/myPage";
+import About from "../pages/about";
 
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/books" element={<Books />} />
+      <Route path="/about" element={<About />} />
       <Route path="/book/:id" element={<BookDetails />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
@@ -21,6 +22,7 @@ function AppRoutes() {
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/profile" element={<MyPage />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/" element={<Home />} />
     </Routes>
   );
 }
