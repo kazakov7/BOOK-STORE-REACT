@@ -68,9 +68,25 @@ export default function Navbar() {
             </NavLink>
           </div>
 
-          <NavLink to={"/login"}>
-            <button className="login-btn">Login</button>
-          </NavLink>
+          {!authMember ? (
+            <NavLink to={"/login"}>
+              <button className="login-btn">Login</button>
+            </NavLink>
+          ) : (
+            <NavLink to={"/profile"}>
+              <img
+                src="/img/default.jpg"
+                alt=""
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                  marginLeft: "10px",
+                }}
+              />
+            </NavLink>
+          )}
         </div>
       </Container>
     </>
