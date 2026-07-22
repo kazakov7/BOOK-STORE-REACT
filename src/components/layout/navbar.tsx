@@ -68,7 +68,9 @@ export default function Navbar() {
             </NavLink>
           </div>
 
-          <button className="login-btn">Login</button>
+          <NavLink to={"/login"}>
+            <button className="login-btn">Login</button>
+          </NavLink>
         </div>
       </Container>
     </>

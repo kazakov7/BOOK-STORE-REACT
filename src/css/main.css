@@ -112,6 +112,10 @@ a {
   width: 22px;
   height: 22px;
 }
+.navbar-right .icon-box img:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
 
 .navbar-right .badge {
   position: absolute;
@@ -154,4 +158,9 @@ a {
   line-height: var(--lineheight-19_5, 19.5px);
   letter-spacing: var(--letterspacing--0_18, -0.18px);
   color: var(--bg-primary);
+  cursor: pointer;
+}
+.navbar-right .login-btn:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
 }
