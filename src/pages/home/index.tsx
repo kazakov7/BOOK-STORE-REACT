@@ -2,12 +2,14 @@ import "../../css/home.css";
 import BestSellers from "./bestSellers";
 import Categories from "./categories";
 import Header from "./header";
+import NewArriwals from "./new-arriwals";
 export default function Home() {
   return (
     <>
       <Header />
       <Categories />
       <BestSellers />
+      <NewArriwals />
     </>
   );
 }
