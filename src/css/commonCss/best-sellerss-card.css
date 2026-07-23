@@ -5,6 +5,7 @@
 }
 .book-card {
   width: 230px;
+  position: relative;
   height: auto;
 }
 
@@ -103,4 +104,20 @@
   font-weight: 600;
   color: #111;
   font-family: "Inter";
+}
+.best-card-frame .custom-button {
+  position: absolute;
+  bottom: 120px;
+  left: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+
+  transition: all 0.5s ease;
+}
+.best-card-frame .book-card:hover .custom-button {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Container from "../../components/common/container";
 import NewArriwalsCard from "../../components/common/home-new-arriwals-card";
+
 export default function NewArriwals() {
   return (
     <>

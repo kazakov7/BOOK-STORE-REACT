@@ -1,8 +1,9 @@
 import { Heart } from "lucide-react";
-import "../../css/commonCss/best-sellerss-card.css";
 import "../../css/home.css";
 import { Rating } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import Button from "./univ-button";
+import "../../css/commonCss/best-sellerss-card.css";
 const books = [
   {
     id: "1",
@@ -87,6 +88,26 @@ export default function BestSellersCard() {
               </div>
             </div>
           </div>
+          <Button height="40px" width="90%">
+            <svg
+              width="15"
+              height="105"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="9" cy="21" r="1" fill="currentColor" />
+              <circle cx="19" cy="21" r="1" fill="currentColor" />
+              <path
+                d="M1 1h3l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            ADD CART
+          </Button>
         </div>
       ))}
     </NavLink>
