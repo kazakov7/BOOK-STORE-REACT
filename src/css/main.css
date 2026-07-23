@@ -24,7 +24,7 @@ a {
 }
 .navbar-left {
   width: 200.58px;
-  padding-left: 30px;
+  padding-left: 16px;
   display: flex;
   flex-direction: row;
   align-items: center;

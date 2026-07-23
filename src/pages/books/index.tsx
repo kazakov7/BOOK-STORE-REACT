@@ -1,3 +1,9 @@
+import Header from "./header";
+
 export default function Books() {
-  return <h1>Books page</h1>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
