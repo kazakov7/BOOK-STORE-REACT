@@ -8,10 +8,11 @@ export default function Footer() {
       <footer className="footer">
         <div className="footer-top">
           <div className="brand-col">
-            <NavLink to={"/"}>
-              <img src="/icons/navbar-logo.svg" alt="" />
-              <span>Book Store</span>
-            </NavLink>
+            <div className="navbar-left">
+              <NavLink to={"/"}>
+                <img src="/icons/logo.png" alt="" />
+              </NavLink>
+            </div>
             <p className="brand-desc">
               A curated digital atheneum for the modern reader. Thoughtful
               books, frictionless discovery, delivered with care.
@@ -73,10 +74,10 @@ export default function Footer() {
           <div className="link-cols">
             <div className="link-col">
               <h4>Company</h4>
-              <a href="#">About</a>
-              <a href="#">Careers</a>
-              <a href="#">Press</a>
-              <a href="#">Blog</a>
+              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to={"/about"}>About</NavLink>
+              <NavLink to={"/books"}>Books</NavLink>
+              <NavLink to={"/profile"}>About</NavLink>
             </div>
             <div className="link-col">
               <h4>Help</h4>

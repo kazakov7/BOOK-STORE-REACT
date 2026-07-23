@@ -10,8 +10,7 @@ export default function Navbar() {
       <Container className="navbar-frame">
         <div className="navbar-left">
           <NavLink to={"/"}>
-            <img src="/icons/navbar-logo.svg" alt="" />
-            <span>Book Store</span>
+            <img src="/icons/logo.png" alt="" />
           </NavLink>
         </div>
         <div className="navbar-links">

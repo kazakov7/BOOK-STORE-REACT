@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "../../css/home.css";
+import { HashLink } from "react-router-hash-link";
 export default function Header() {
   return (
     <>
@@ -25,9 +26,9 @@ export default function Header() {
                 <span>→</span>
               </button>
             </NavLink>
-            <NavLink to={"/books"}>
-              <button className="btn-secondary">Best Sellers</button>
-            </NavLink>
+            <HashLink smooth to="/#best-sellers">
+              <button className="btn-secondary">Bestsellers</button>
+            </HashLink>
           </div>
 
           <div className="content-stats">
@@ -51,10 +52,10 @@ export default function Header() {
           <img src="/img/header-image.svg" alt="" />
           <div className="header-right-content">
             <img src="/icons/Overlay.svg" alt="" />
-            <div>
+            <HashLink smooth to="/#best-sellers">
               <strong>#1this week</strong>
               <span>Atomic habits</span>
-            </div>
+            </HashLink>
           </div>
         </div>
       </div>

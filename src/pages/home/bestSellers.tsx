@@ -6,7 +6,11 @@ export default function BestSellers() {
   return (
     <>
       <Container>
-        <div className="section-frame" style={{ marginTop: "100px" }}>
+        <div
+          id="best-sellers"
+          className="section-frame"
+          style={{ marginTop: "100px" }}
+        >
           <div className="section-top">
             <span>TRENDING</span>
             <strong>Best Sellers</strong>
