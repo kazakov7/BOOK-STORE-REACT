@@ -6,8 +6,8 @@ export default function Categories() {
   return (
     <>
       <Container>
-        <div className="categories-frame">
-          <div className="categories-top">
+        <div className="section-frame">
+          <div className="section-top">
             <span>BROWSE</span>
             <strong>Find your next chapter</strong>
             <div>
@@ -18,7 +18,7 @@ export default function Categories() {
               <NavLink to={"/books"}>All categories→</NavLink>
             </div>
           </div>
-          <div className="categories-bottom">
+          <div className="section-bottom">
             <CategoriesCard />
           </div>
         </div>

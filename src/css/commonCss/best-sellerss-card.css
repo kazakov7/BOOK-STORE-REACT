@@ -1,0 +1,106 @@
+.best-card-frame {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.book-card {
+  width: 230px;
+  height: auto;
+}
+
+.book-card__cover {
+  position: relative;
+  width: 100%;
+  height: 384px;
+  border-radius: 16px;
+  overflow: hidden; /* faqat shu yerda */
+}
+
+.book-card__cover-inner {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+  transform-origin: center;
+}
+.book-card__cover:hover .book-card__cover-inner {
+  transform: scale(1.08);
+}
+.book-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.15) 45%,
+    rgba(0, 0, 0, 0) 65%
+  );
+}
+
+.book-card__like-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fbf3ec;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+.book-card__like-btn:hover {
+  background: red;
+  color: white;
+  transition: 0.5s;
+}
+
+.book-card__info {
+  padding: 16px 5px 0;
+}
+
+.book-card__info-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: "Inter";
+}
+
+.book-card__info-author {
+  font-size: 15px;
+  color: #6b7280;
+  margin-top: 2px;
+  font-family: "Inter";
+}
+
+.book-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.book-card__price {
+  color: #111;
+  font-family: "Inter";
+  font-style: Semi Bold;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.book-card__rating {
+  display: flex;
+  align-items: center;
+}
+
+.book-card__rating-value {
+  margin-left: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  font-family: "Inter";
+}
