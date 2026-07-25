@@ -1,3 +1,15 @@
-export default function About() {
-  return <h1>About page</h1>;
+import ContactSection from "./contact";
+import FeaturedSection from "./feature";
+import HeaderSection from "./header";
+import QuoteSection from "./quote";
+
+export default function BookDetails() {
+  return (
+    <>
+      <HeaderSection />
+      <FeaturedSection />
+      <QuoteSection />
+      <ContactSection />
+    </>
+  );
 }

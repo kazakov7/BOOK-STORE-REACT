@@ -1,0 +1,18 @@
+<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="44.000000" height="44.000000" fill="none" customFrame="url(#clipPath_8)">
+	<defs>
+		<clipPath id="clipPath_8">
+			<rect width="44.000000" height="44.000000" x="0.000000" y="0.000000" rx="12.000000" fill="rgb(255,255,255)" />
+		</clipPath>
+		<clipPath id="clipPath_9">
+			<rect width="20.000000" height="20.000000" x="12.000000" y="12.000000" fill="rgb(255,255,255)" />
+		</clipPath>
+	</defs>
+	<rect id="Overlay" width="44.000000" height="44.000000" x="0.000000" y="0.000000" rx="12.000000" fill="rgb(3,169,244)" fill-opacity="0.0799999982" />
+	<g id="SVG" clip-path="url(#clipPath_9)" customFrame="url(#clipPath_9)">
+		<rect id="SVG" width="20.000000" height="20.000000" x="12.000000" y="12.000000" />
+		<path id="Vector" d="M25.3334 29.5L25.3334 27.8333C25.3334 26.9493 24.9822 26.1014 24.3571 25.4763C23.732 24.8512 22.8841 24.5 22.0001 24.5L17.0001 24.5C16.116 24.5 15.2682 24.8512 14.6431 25.4763C14.0179 26.1014 13.6667 26.9493 13.6667 27.8333L13.6667 29.5" stroke="rgb(3,169,244)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.666667" />
+		<path id="Vector" d="M19.5001 21.1667C17.6591 21.1667 16.1667 19.6743 16.1667 17.8333C16.1667 15.9924 17.6591 14.5 19.5001 14.5C21.341 14.5 22.8334 15.9924 22.8334 17.8333C22.8334 19.6743 21.341 21.1667 19.5001 21.1667Z" stroke="rgb(3,169,244)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.666667" />
+		<path id="Vector" d="M30.3333 29.4998L30.3333 27.8332C30.3327 27.0946 30.0869 26.3771 29.6344 25.7934C29.1819 25.2097 28.5484 24.7928 27.8333 24.6082" stroke="rgb(3,169,244)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.666667" />
+		<path id="Vector" d="M25.3333 14.6082C26.0503 14.7917 26.6858 15.2087 27.1396 15.7934C27.5935 16.3781 27.8398 17.0972 27.8398 17.8373C27.8398 18.5775 27.5935 19.2966 27.1396 19.8812C26.6858 20.4659 26.0503 20.8829 25.3333 21.0665" stroke="rgb(3,169,244)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.666667" />
+	</g>
+</svg>

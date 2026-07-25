@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../../css/cart.css";
-import { ArrowLeft, Plus, Trash, Trash2 } from "lucide-react";
+import { ArrowLeft, Plus, Trash2 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 // Vaqtinchalik hardcoded ma'lumot — keyinchalik backend/MongoDB'dan keladi
