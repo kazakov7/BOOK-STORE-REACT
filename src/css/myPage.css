@@ -1,0 +1,461 @@
+/* TABS */
+
+.mypage-header {
+  width: 100%;
+  height: 190px;
+
+  margin: 30px auto;
+
+  background: rgba(247, 251, 255, 1);
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mypage-header .mypage-top {
+  height: 144px;
+
+  padding: 30px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mypage-header .profile-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mypage-header .profile-avatar {
+  width: 64px !important;
+  height: 64px !important;
+  font-size: 26px !important;
+}
+
+.mypage-header .profile-name {
+  color: var(--kevins-book-storebase44app-Ebony, rgba(17, 24, 39, 1));
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Bold;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: var(--lineheight-36, 36px);
+  letter-spacing: var(--letterspacing--0_24, -0.24px);
+  text-align: left;
+  display: block;
+}
+
+.mypage-header .profile-email {
+  color: rgba(107, 114, 128, 1);
+  font-family: "Inter";
+  font-style: Regular;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: var(--lineheight-21, 21px);
+  letter-spacing: var(--letterspacing--0_18, -0.18px);
+}
+
+.mypage-header .logout-btn {
+  width: 107.72px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid rgba(243, 244, 246, 1);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  color: rgba(55, 65, 81, 1);
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Medium;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.mypage-header .profile-tabs {
+  height: 45px;
+}
+/* PROFILE CSS */
+.account-frame {
+  width: 1300px;
+  height: 400px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  font-family: "Inter", sans-serif;
+}
+
+/* LEFT */
+
+.account-frame .account-left {
+  width: 852px;
+  height: 392px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--itemspacing-s, 24px);
+  padding: 32px;
+  box-sizing: border-box;
+  border: 1px solid rgba(243, 244, 246, 1);
+  border-radius: var(--cornerradius-16, 16px);
+}
+
+.account-frame .account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.account-header strong {
+  color: var(--kevins-book-storebase44app-Ebony, rgba(17, 24, 39, 1));
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Semi Bold;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: var(--lineheight-27, 27px);
+  letter-spacing: var(--letterspacing--0_18, -0.18px);
+  text-align: left;
+}
+
+.account-frame .edit-btn {
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  color: #0b82ff;
+  font-size: 16px;
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.account-frame .edit-btn img {
+  width: 18px;
+  height: 18px;
+}
+.info-item {
+  width: 786px;
+  height: 58px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--itemspacing-12, 12px);
+  border-bottom: 1px solid rgba(243, 244, 246, 1);
+  padding-bottom: 30px;
+}
+
+.border-none {
+  border-bottom: none;
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+  background: #f7f9fc;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info-content {
+  height: 41px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--itemspacing-xxxs, 2px);
+}
+.info-content span {
+  color: rgba(156, 163, 175, 1);
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Medium;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.info-content strong {
+  color: var(--kevins-book-storebase44app-Ebony, rgba(17, 24, 39, 1));
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Regular;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* RIGHT */
+
+.account-right {
+  width: 370px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.account-right .stats-card {
+  width: 320px;
+  height: 215px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--itemspacing-s, 16px);
+  padding: 24px;
+  box-sizing: border-box;
+  border: 1px solid rgba(243, 244, 246, 1);
+  border-radius: var(--cornerradius-16, 16px);
+}
+
+.goal-card {
+  /* Background+Border */
+  width: 320px;
+  height: 140px;
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--itemspacing-3, 3px);
+  padding: 24px;
+  box-sizing: border-box;
+  border: 1px solid rgba(243, 244, 246, 1);
+  border-radius: var(--cornerradius-16, 16px);
+  background: rgba(247, 251, 255, 1);
+}
+
+.card-title {
+  color: var(
+    --kevins-book-storebase44app-GrayChateau,
+    var(--color-azure-65, rgba(156, 163, 175, 1))
+  );
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Semi Bold;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: var(--lineheight-18, 18px);
+  letter-spacing: var(--letterspacing-0_3, 0.3px);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.stat {
+  width: 270px;
+  height: 33px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stat span {
+  color: var(
+    --kevins-book-storebase44app-PaleSky,
+    var(--color-grey-46, rgba(107, 114, 128, 1))
+  );
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Regular;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: var(--lineheight-21, 21px);
+  letter-spacing: var(--letterspacing--0_18, -0.18px);
+  text-align: left;
+}
+
+.stat strong {
+  color: var(--kevins-book-storebase44app-Ebony, rgba(17, 24, 39, 1));
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Bold;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.goal-card strong {
+  color: rgba(17, 24, 39, 1);
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Semi Bold;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.goal-text {
+  color: var(
+    --kevins-book-storebase44app-PaleSky,
+    var(--color-grey-46, rgba(107, 114, 128, 1))
+  );
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Regular;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.progress {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 90%;
+  height: 100%;
+
+  background: #1593ff;
+}
+
+.goal-status {
+  color: var(--kevins-book-storebase44app-Cerulean, rgba(3, 169, 244, 1));
+
+  font-family: var(--fontfamily-Font1, "Inter");
+  font-style: Medium;
+  font-size: 12px;
+  font-weight: 500;
+}
+/* ORDERS TYLE */
+.order-card {
+  padding: 20px 40px;
+  background: #fff;
+  border: 1px solid #e9edf3;
+  border-radius: 28px;
+
+  font-family: "Inter", sans-serif;
+  margin-bottom: 20px;
+}
+
+.order-card .order-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.order-info .order-number {
+  display: block;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a2238;
+}
+
+.order-info .order-date {
+  display: block;
+  margin-top: 8px;
+
+  font-size: 18px;
+  color: #66758d;
+}
+
+.order-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-status .status-badge {
+  padding: 5px 15px;
+
+  border-radius: 30px;
+
+  background: #e9f8ef;
+
+  color: #1ca34a;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-status .order-price {
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #1a2238;
+}
+
+.order-books .book-item {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-top: 1px solid #edf0f5;
+  padding: 18px 0;
+}
+
+.book-item .book-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #d58c31;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.book-item .purple {
+  background: #6558d8;
+}
+
+.book-item .book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-info strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a2238;
+}
+
+.book-info span {
+  margin-top: 6px;
+
+  font-size: 18px;
+
+  color: #66758d;
+}
+.order-card .order-footer {
+  display: flex;
+  justify-content: flex-end;
+
+  padding-top: 10px;
+
+  border-top: 1px solid #edf0f5;
+}
+
+.order-footer button {
+  margin-top: 10px;
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  color: #3b82f6;
+}
+.order-footer button:hover {
+  color: #2563eb;
+}
+.product-price {
+}

@@ -1,3 +1,11 @@
+import { Outlet } from "react-router-dom";
+import Tabs from "./tabs";
+
 export default function MyPage() {
-  return <h1>My page</h1>;
+  return (
+    <>
+      <Tabs />
+      <Outlet />
+    </>
+  );
 }
