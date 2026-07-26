@@ -2,8 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Cart from "../pages/cart";
 import Home from "../pages/home";
 import Login from "../pages/login";
-import NotFound from "../pages/notFound";
-import Signup from "../pages/signup";
+
 import Wishlist from "../pages/wishlist";
 import Books from "../pages/books";
 import BookDetails from "../pages/bookDetails";
@@ -12,6 +11,7 @@ import About from "../pages/about";
 import Orders from "../pages/myPage/orders";
 import ProfileWishlist from "../pages/myPage/wishlist";
 import Account from "../pages/myPage/profile";
+import SignUp from "../pages/signup";
 
 function AppRoutes() {
   return (
@@ -21,10 +21,10 @@ function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="*" element={<NotFound />} />
+
         <Route path="/" element={<Home />} />
 
         <Route path="/profile" element={<MyPage />}>
