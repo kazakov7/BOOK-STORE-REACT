@@ -1,3 +1,11 @@
+import ProfileWishlist from "../myPage/wishlist";
+import Header from "./header";
+
 export default function Wishlist() {
-  return <h1>Wishlist page</h1>;
+  return (
+    <>
+      <Header />
+      <ProfileWishlist />
+    </>
+  );
 }
