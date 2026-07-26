@@ -145,7 +145,7 @@
   width: 18px;
   height: 18px;
 }
-.info-item {
+.account-frame .info-item {
   width: 786px;
   height: 58px;
   display: flex;
@@ -156,11 +156,11 @@
   padding-bottom: 30px;
 }
 
-.border-none {
+.account-frame .border-none {
   border-bottom: none;
 }
 
-.info-icon {
+.account-frame .info-icon {
   width: 48px;
   height: 48px;
 
@@ -171,14 +171,14 @@
   justify-content: center;
   align-items: center;
 }
-.info-content {
+.account-frame .info-content {
   height: 41px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: var(--itemspacing-xxxs, 2px);
 }
-.info-content span {
+.account-frame .info-content span {
   color: rgba(156, 163, 175, 1);
   font-family: var(--fontfamily-Font1, "Inter");
   font-style: Medium;
@@ -186,7 +186,7 @@
   font-weight: 500;
 }
 
-.info-content strong {
+.account-frame .info-content strong {
   color: var(--kevins-book-storebase44app-Ebony, rgba(17, 24, 39, 1));
 
   font-family: var(--fontfamily-Font1, "Inter");
@@ -197,14 +197,14 @@
 
 /* RIGHT */
 
-.account-right {
+.account-frame .account-right {
   width: 370px;
 
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.account-right .stats-card {
+.account-frame .account-right .stats-card {
   width: 320px;
   height: 215px;
   display: flex;
@@ -218,7 +218,7 @@
   border-radius: var(--cornerradius-16, 16px);
 }
 
-.goal-card {
+.account-frame .goal-card {
   /* Background+Border */
   width: 320px;
   height: 140px;
@@ -235,7 +235,7 @@
   background: rgba(247, 251, 255, 1);
 }
 
-.card-title {
+.account-frame .card-title {
   color: var(
     --kevins-book-storebase44app-GrayChateau,
     var(--color-azure-65, rgba(156, 163, 175, 1))
@@ -251,7 +251,7 @@
   text-transform: uppercase;
 }
 
-.stat {
+.account-frame .stat {
   width: 270px;
   height: 33px;
   display: flex;
@@ -260,7 +260,7 @@
   align-items: flex-start;
 }
 
-.stat span {
+.account-frame .stat span {
   color: var(
     --kevins-book-storebase44app-PaleSky,
     var(--color-grey-46, rgba(107, 114, 128, 1))
@@ -275,7 +275,7 @@
   text-align: left;
 }
 
-.stat strong {
+.account-frame .stat strong {
   color: var(--kevins-book-storebase44app-Ebony, rgba(17, 24, 39, 1));
 
   font-family: var(--fontfamily-Font1, "Inter");
@@ -284,7 +284,7 @@
   font-weight: 700;
 }
 
-.goal-card strong {
+.account-frame .goal-card strong {
   color: rgba(17, 24, 39, 1);
 
   font-family: var(--fontfamily-Font1, "Inter");
@@ -293,7 +293,7 @@
   font-weight: 600;
 }
 
-.goal-text {
+.account-frame .goal-text {
   color: var(
     --kevins-book-storebase44app-PaleSky,
     var(--color-grey-46, rgba(107, 114, 128, 1))
@@ -305,7 +305,7 @@
   font-weight: 400;
 }
 
-.progress {
+.account-frame .progress {
   width: 100%;
   height: 8px;
   background: #e5e7eb;
@@ -313,14 +313,14 @@
   overflow: hidden;
 }
 
-.progress-fill {
+.account-frame .progress-fill {
   width: 90%;
   height: 100%;
 
   background: #1593ff;
 }
 
-.goal-status {
+.account-frame .goal-status {
   color: var(--kevins-book-storebase44app-Cerulean, rgba(3, 169, 244, 1));
 
   font-family: var(--fontfamily-Font1, "Inter");
