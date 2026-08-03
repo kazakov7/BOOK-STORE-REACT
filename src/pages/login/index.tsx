@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import AuthLayout from "../../components/layout/auth-layout";
 import "../../css/auth.css";
-import { LockKeyhole, Mail } from "lucide-react";
+import { LockKeyhole, UserIcon } from "lucide-react";
 export default function Login() {
   return (
     <AuthLayout>
@@ -11,10 +11,10 @@ export default function Login() {
 
         <form>
           <div className="field">
-            <label>Email</label>
+            <label>Email or Username</label>
             <div className="input-with-icon">
-              <Mail color="#3b82f6" />
-              <input type="email" placeholder="you@email.com" />
+              <UserIcon color="#3b82f6" />
+              <input type="email" placeholder="Email or username" />
             </div>
           </div>
 

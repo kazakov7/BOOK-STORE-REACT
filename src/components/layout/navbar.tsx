@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { SearchIcon } from "lucide-react";
 
 export default function Navbar() {
-  const authMember = true;
+  const authMember = null;
   return (
     <>
       <Container className="navbar-frame">

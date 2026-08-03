@@ -1,12 +1,15 @@
 import { BookOpen } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export default function AuthLayout({ children }: any) {
   return (
     <div className="auth-page">
       <div className="auth-brand">
-        <div className="brand-row">
-          <img src="/icons/logo2.png" alt="" />
-        </div>
+        <NavLink to={"/"}>
+          <div className="brand-row">
+            <img src="/icons/logo2.png" alt="" />
+          </div>
+        </NavLink>
 
         <div className="quote-block">
           <BookOpen color="#3b82f6" />

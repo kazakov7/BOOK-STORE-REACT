@@ -11,7 +11,7 @@ export default function SignUp() {
 
         <form>
           <div className="field">
-            <label>Nickname</label>
+            <label>Username</label>
             <div className="input-with-icon">
               <User color="#3b82f6" />
               <input type="text" placeholder="Jane Reader" />

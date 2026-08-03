@@ -54,7 +54,7 @@
 .sidebar-frame {
   width: 260px;
   height: 1700px;
-  margin-left: 160px;
+  margin-left: 210px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
