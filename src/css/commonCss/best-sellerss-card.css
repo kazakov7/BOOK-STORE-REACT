@@ -121,3 +121,17 @@
   visibility: visible;
   transform: translateY(0);
 }
+.new-arrriwals-card-frame .book-card__cover:hover .book-card__cover-inner {
+  transform: none;
+}
+.new-arrriwals-card-frame .book-card:hover {
+  transform: translateY(-5px) scale(1.004);
+  transition: 0.5s;
+
+  border-color: rgba(0, 162, 255, 0.15);
+
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.12),
+    0 8px 18px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+}
