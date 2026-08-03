@@ -1,7 +1,7 @@
 .card-frame {
   /* Link */
   width: 310px;
-  height: 237.5px;
+  height: 300px;
   padding: 21px;
   display: flex;
   flex-direction: column;
@@ -17,11 +17,12 @@
 }
 .card-frame img {
   width: 260px;
-  height: 115px;
+  height: 180px;
   border-radius: var(--fontsize-12, 12px);
 }
 .card-frame .card-title {
   padding: 0;
+  margin-top: 10px;
   width: 100%;
   height: 24px;
   display: flex;

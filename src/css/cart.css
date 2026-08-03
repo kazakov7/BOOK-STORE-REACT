@@ -54,6 +54,7 @@ body {
 .cart-page .cart-layout {
   margin-top: 37px;
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 32px;
 }
@@ -176,7 +177,30 @@ body {
 .cart-page .delete-btn:hover {
   color: #dc2626;
 }
-
+.cart-page .delivery-info-card {
+  width: 830px;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+}
+.cart-page .delivery-info-card label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+.cart-page .delivery-info-card input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #eef0f4;
+  border-radius: 10px;
+  font-size: 16px;
+}
 /* ---- order summary ---- */
 .cart-page .summary-card {
   width: 380px;

@@ -26,7 +26,6 @@ function AppRoutes() {
         <Route path="/wishlist" element={<Wishlist />} />
 
         <Route path="/" element={<Home />} />
-
         <Route path="/profile" element={<MyPage />}>
           <Route index element={<Navigate to="account" replace />} />
           <Route path="account" element={<Account />} />

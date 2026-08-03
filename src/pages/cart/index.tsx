@@ -1,6 +1,13 @@
 import { useState } from "react";
 import "../../css/cart.css";
-import { ArrowLeft, Plus, Trash2 } from "lucide-react";
+import {
+  ArrowLeft,
+  LocateIcon,
+  Minus,
+  PhoneIcon,
+  Plus,
+  Trash2,
+} from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 // Vaqtinchalik hardcoded ma'lumot — keyinchalik backend/MongoDB'dan keladi
@@ -53,7 +60,7 @@ function CartItemRow({ book, onIncrease, onDecrease, onRemove }: any) {
       <div className="col-quantity">
         <div className="qty-control">
           <button className="qty-btn" onClick={() => onDecrease(book.id)}>
-            <Plus size={18} />
+            <Minus size={18} />
           </button>
           <span className="qty-value">{book.quantity}</span>
           <button className="qty-btn" onClick={() => onIncrease(book.id)}>
@@ -124,6 +131,8 @@ function OrderSummary({ subtotal, tax, total }: any) {
 
 export default function CartPage() {
   const [books, setBooks] = useState(INITIAL_BOOKS);
+  const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const increaseQty = (id: any) => {
     setBooks((prev) =>
@@ -158,24 +167,55 @@ export default function CartPage() {
       <span className="items-count">{books.length} items in your bag</span>
 
       <div className="cart-layout">
-        <div className="cart-table">
-          <div className="cart-header-row">
-            <span>BOOK</span>
-            <span>QUANTITY</span>
-            <span>PRICE</span>
+        <div>
+          <div className="cart-table">
+            <div className="cart-header-row">
+              <span>BOOK</span>
+              <span>QUANTITY</span>
+              <span>PRICE</span>
+            </div>
+
+            {books.map((book) => (
+              <CartItemRow
+                key={book.id}
+                book={book}
+                onIncrease={increaseQty}
+                onDecrease={decreaseQty}
+                onRemove={removeBook}
+              />
+            ))}
           </div>
 
-          {books.map((book) => (
-            <CartItemRow
-              key={book.id}
-              book={book}
-              onIncrease={increaseQty}
-              onDecrease={decreaseQty}
-              onRemove={removeBook}
+          <section className="delivery-info-card">
+            <label className="card-label" htmlFor="deliveryAddress">
+              <LocateIcon />
+              Delivery address
+            </label>
+            <input
+              id="deliveryAddress"
+              type="text"
+              placeholder="Tashkent, Chilonzor district, house 12"
+              value={deliveryAddress}
+              onChange={(e) => setDeliveryAddress(e.target.value)}
+              className="oc-input"
             />
-          ))}
-        </div>
+          </section>
 
+          <section className="delivery-info-card">
+            <label className="card-label" htmlFor="phoneNumber">
+              <PhoneIcon />
+              Phone number
+            </label>
+            <input
+              id="phoneNumber"
+              type="tel"
+              placeholder="+998 90 123 45 67"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="oc-input"
+            />
+          </section>
+        </div>
         <OrderSummary subtotal={subtotal} tax={tax} total={total} />
       </div>
     </div>

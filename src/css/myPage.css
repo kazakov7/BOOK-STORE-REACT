@@ -347,23 +347,22 @@
   border-bottom: 1px solid #edf0f5;
 }
 
-.order-info .order-number {
+.order-top .order-info .order-number {
   display: block;
 
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   color: #1a2238;
 }
 
-.order-info .order-date {
+.order-top .order-info .order-date {
   display: block;
   margin-top: 8px;
-
-  font-size: 18px;
+  font-size: 16px;
   color: #66758d;
 }
 
-.order-status {
+.order-top .order-status {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -384,9 +383,8 @@
 }
 
 .order-status .order-price {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-
   color: #1a2238;
 }
 
@@ -400,15 +398,8 @@
 
 .book-item .book-image {
   width: 50px;
-  height: 50px;
+  height: 70px;
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #d58c31;
-  color: #fff;
-  font-size: 32px;
-  font-weight: 700;
 }
 
 .book-item .purple {
@@ -429,7 +420,7 @@
 .book-info span {
   margin-top: 6px;
 
-  font-size: 18px;
+  font-size: 14px;
 
   color: #66758d;
 }
@@ -450,7 +441,7 @@
   cursor: pointer;
 
   font-family: inherit;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #3b82f6;
 }
