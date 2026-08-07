@@ -75,7 +75,6 @@ export default function CategoriesCard() {
               </NavLink>
             </div>
             <span>{book.desc}</span>
-            <b>{book.titles}</b>
           </div>
         );
       })}

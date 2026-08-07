@@ -11,9 +11,11 @@
   border: 1px solid rgba(243, 244, 246, 1);
   border-radius: var(--cornerradius-16, 16px);
 }
+
 .card-frame:hover {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   transition: 0.5s;
+  cursor: pointer;
 }
 .card-frame img {
   width: 260px;

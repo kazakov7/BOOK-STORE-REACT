@@ -1,9 +1,9 @@
 import { Heart } from "lucide-react";
 import { Rating } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import "../../css/commonCss/new-arriwalss-card.css";
 import Button from "../../components/common/univ-button";
 import Container from "../../components/common/container";
+import "../../css/home.css";
 const books = [
   {
     id: "1",
