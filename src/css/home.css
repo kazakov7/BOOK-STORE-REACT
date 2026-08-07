@@ -842,3 +842,40 @@
 .badge-trending {
   background: #3b82f6;
 }
+.no-data {
+  width: 1300px;
+  min-height: 280px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  padding: 40px 20px;
+
+  border: 2px dashed #e5e7eb;
+  border-radius: 20px;
+
+  background: #fafafa;
+}
+
+.no-data h3 {
+  margin: 0;
+
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.no-data p {
+  margin: 0;
+
+  max-width: 400px;
+
+  text-align: center;
+  line-height: 1.6;
+
+  font-size: 15px;
+  color: #6b7280;
+}

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Container from "../../components/common/container";
-import { Box, Eye, Heart } from "lucide-react";
-import { Rating } from "@mui/material";
+import { BookOpen, Eye, Heart } from "lucide-react";
+import { Box, Rating } from "@mui/material";
 import Button from "../../components/common/univ-button";
 import "../../css/home.css";
 import { createSelector } from "reselect";
@@ -117,6 +117,7 @@ export default function MostViewed() {
                 })
               ) : (
                 <Box className="no-data">
+                  <BookOpen size={56} strokeWidth={1.5} />
                   Most Viwed books are not available!
                 </Box>
               )}

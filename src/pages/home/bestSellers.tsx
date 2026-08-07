@@ -1,14 +1,13 @@
 import { NavLink } from "react-router-dom";
 import Container from "../../components/common/container";
 import "../../css/home.css";
-import { Box, Flame, Heart } from "lucide-react";
-import { Rating } from "@mui/material";
+import { BookOpen, Flame, Heart } from "lucide-react";
+import { Box, Rating } from "@mui/material";
 import Button from "../../components/common/univ-button";
 import "../../css/home.css";
 import { createSelector } from "reselect";
 import { retrieveBestSellers } from "./selector";
 import { useSelector } from "react-redux";
-import type { Book } from "../../libs/types/product";
 import { serverApi } from "../../libs/enums/config";
 
 const bestSellersRetriewer = createSelector(
@@ -115,6 +114,7 @@ export default function BestSellers() {
                 })
               ) : (
                 <Box className="no-data">
+                  <BookOpen size={56} strokeWidth={1.5} />
                   Most Viwed books are not available!
                 </Box>
               )}
