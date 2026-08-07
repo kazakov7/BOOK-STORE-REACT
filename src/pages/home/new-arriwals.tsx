@@ -1,52 +1,20 @@
 import { NavLink } from "react-router-dom";
 import Container from "../../components/common/container";
 import { Rating } from "@mui/material";
-import { Heart } from "lucide-react";
+import { Box, Heart, Sparkles } from "lucide-react";
 import Button from "../../components/common/univ-button";
 import "../../css/home.css";
-const books = [
-  {
-    id: "5",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8A11fWQ6XXoA2F0cd5LHEE6s3g3jEDLxc26IrRfS5g&s=10",
-    title: "Rich dad & poor dad",
-    author: "Robert Kiosaki",
-    price: "230",
-    rating: 4.5,
-    views: 45,
-  },
-  {
-    id: "6",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbH53XDMIRSXpC3BryVk7D9K5p6srniw2P6wcENeesrw&s=10",
-    title: "The Alchemist",
-    author: "Paulo Coelho",
-    price: "76",
-    rating: 5,
-    views: 4,
-  },
-  {
-    id: "7",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5O3_c4l-ASFVdasKXQYsMNsfwlNhAiOZvPSI-VgeW9Q&s=10",
-    title: "Atomic Habits",
-    author: "James Clear",
-    price: "45.5",
-    rating: 3.5,
-    views: 32,
-  },
-  {
-    id: "8",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8A11fWQ6XXoA2F0cd5LHEE6s3g3jEDLxc26IrRfS5g&s=10",
-    title: "Rich dad & poor dad",
-    author: "Robert Kiosaki",
-    price: "230",
-    rating: 4.5,
-    views: 65,
-  },
-];
+import { createSelector } from "reselect";
+import { retrieveNewArriwals } from "./selector";
+import { useSelector } from "react-redux";
+import { serverApi } from "../../libs/enums/config";
+import type { Book } from "../../libs/types/product";
+const mostViewedRetriewer = createSelector(
+  retrieveNewArriwals,
+  (newArriwals) => ({ newArriwals }),
+);
 export default function NewArriwals() {
+  const { newArriwals } = useSelector(mostViewedRetriewer);
   return (
     <>
       <Container>
@@ -63,68 +31,95 @@ export default function NewArriwals() {
           </div>
           <div className="section-bottom">
             <NavLink to={"/books"} className={"new-arrriwals-card-frame"}>
-              {books.map((book) => (
-                <div className="book-card" key={book.id}>
-                  <div className="book-card__cover">
-                    <div
-                      className="book-card__cover-inner"
-                      style={{ backgroundImage: `url(${book.image})` }}
-                    ></div>
-                    <div className="book-card__overlay" />
+              {newArriwals.length !== 0 ? (
+                newArriwals.map((book: Book) => {
+                  const imagePath = `${serverApi}/${book.images[0]}`;
+                  return (
+                    <div className="book-card" key={book._id}>
+                      <div className="book-card__cover">
+                        <div
+                          className="book-card__cover-inner"
+                          style={{ backgroundImage: `url(${imagePath})` }}
+                        ></div>
+                        <div className="book-card__overlay" />
 
-                    <button
-                      aria-label="Sevimlilarga qo'shish"
-                      className="book-card__like-btn"
-                    >
-                      <Heart size={20} strokeWidth={1.75} />
-                    </button>
-                  </div>
-
-                  <div className="book-card__info">
-                    <div className="book-card__info-title">{book.title}</div>
-                    <div className="book-card__info-author">{book.author}</div>
-
-                    <div className="book-card__rating">
-                      <Rating
-                        value={book.rating}
-                        precision={0.1}
-                        readOnly
-                        style={{ fontSize: "20px" }}
-                      />
-                      <span className="book-card__rating-value">
-                        {book.rating}
-                      </span>
-                    </div>
-                    <div className="book-card__meta">
-                      <div className="book-card__price">${book.price}</div>
-                      <Button
-                        className="book-card-btn"
-                        width="50%"
-                        height="35px"
-                      >
-                        <svg
-                          width="15"
-                          height="105"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div className="book-badge badge-new">
+                          <Sparkles size={13} />
+                          New Arrival
+                        </div>
+                        <button
+                          aria-label="Sevimlilarga qo'shish"
+                          className="book-card__like-btn"
                         >
-                          <circle cx="9" cy="21" r="1" fill="currentColor" />
-                          <circle cx="19" cy="21" r="1" fill="currentColor" />
-                          <path
-                            d="M1 1h3l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                          <Heart size={20} strokeWidth={1.75} />
+                        </button>
+                      </div>
+
+                      <div className="book-card__info">
+                        <div className="book-card__info-title">
+                          {book.title}
+                        </div>
+                        <div className="book-card__info-author">
+                          {book.author}
+                        </div>
+
+                        <div className="book-card__rating">
+                          <Rating
+                            value={book.averageRating}
+                            precision={0.1}
+                            readOnly
+                            style={{ fontSize: "20px" }}
                           />
-                        </svg>
-                        ADD CART
-                      </Button>
+                          <span className="book-card__rating-value">
+                            {book.averageRating}
+                          </span>
+                        </div>
+                        <div className="book-card__meta">
+                          <div className="book-card__price">${book.price}</div>
+                          <Button
+                            className="book-card-btn"
+                            width="50%"
+                            height="35px"
+                          >
+                            <svg
+                              width="15"
+                              height="105"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <circle
+                                cx="9"
+                                cy="21"
+                                r="1"
+                                fill="currentColor"
+                              />
+                              <circle
+                                cx="19"
+                                cy="21"
+                                r="1"
+                                fill="currentColor"
+                              />
+                              <path
+                                d="M1 1h3l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                            ADD CART
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  );
+                })
+              ) : (
+                <Box className="no-data">
+                  Most Viwed books are not available!
+                </Box>
+              )}
             </NavLink>
           </div>
         </div>

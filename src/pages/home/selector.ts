@@ -3,15 +3,15 @@ import type { AppRootState } from "../../libs/types/screen";
 
 const selectHomePage = (state: AppRootState) => state.homePage;
 
-export const retrievePopularDishes = createSelector(
+export const retrieveMostViewed = createSelector(
   selectHomePage,
-  (homePage) => homePage.popularDishes,
+  (homePage) => homePage.mostViewed,
 );
-export const retrieveNewDishes = createSelector(
+export const retrieveBestSellers = createSelector(
   selectHomePage,
-  (homePage) => homePage.newDishes,
+  (homePage) => homePage.bestSellers,
 );
-export const retrieveTopUsers = createSelector(
+export const retrieveNewArriwals = createSelector(
   selectHomePage,
-  (homePage) => homePage.activeUsers,
+  (homePage) => homePage.newArriwals,
 );
