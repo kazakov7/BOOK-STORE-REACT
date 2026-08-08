@@ -23,6 +23,7 @@ import { serverApi } from "../../libs/enums/config";
 import Rating from "@mui/material/Rating";
 import { Pagination } from "@mui/material";
 import PaginationItem from "@mui/material/PaginationItem";
+import type { CartItem } from "../../libs/types/search";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setBooks: (data: Book[]) => dispatch(setBooks(data)),
@@ -31,7 +32,12 @@ const booksRetriewer = createSelector(retrieveBooks, (allBooks) => ({
   allBooks,
 }));
 
-export default function Sidebar() {
+interface SidebarProps {
+  onAdd: (item: CartItem) => void;
+}
+
+export default function Sidebar(props: SidebarProps) {
+  const { onAdd } = props;
   const { setBooks } = actionDispatch(useDispatch());
   const { allBooks } = useSelector(booksRetriewer);
 
@@ -393,7 +399,24 @@ export default function Sidebar() {
                 </div>
               </div>
 
-              <Button height="35px" width="90%" className="add-btn">
+              <Button
+                height="35px"
+                width="90%"
+                className="add-btn"
+                onClick={(e) => {
+                  onAdd({
+                    _id: book._id,
+                    name: book.title,
+                    author: book.author,
+                    language: book.language,
+                    price: book.price,
+                    quantity: 1,
+                    image: book.images[0],
+                  });
+
+                  e.stopPropagation();
+                }}
+              >
                 <svg
                   width="15"
                   height="105"

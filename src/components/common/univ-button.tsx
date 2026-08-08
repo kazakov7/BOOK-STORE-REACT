@@ -5,10 +5,10 @@ interface ButtonProps {
   children?: ReactNode;
   width?: string;
   height?: string;
-  onClick?: () => void;
   disabled?: boolean;
   className?: string;
   type?: "button" | "submit" | "reset";
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function Button({

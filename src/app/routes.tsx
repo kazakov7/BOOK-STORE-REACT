@@ -13,24 +13,37 @@ import ProfileWishlist from "../pages/myPage/wishlist";
 import Account from "../pages/myPage/profile";
 import SignUp from "../pages/signup";
 import BookDetails from "../pages/books/bookDetails";
+import useBasket from "../hooks/useBasket";
 
 function AppRoutes() {
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
   return (
     <>
       <Routes>
-        <Route path="/books" element={<Books />} />
+        <Route path="/books" element={<Books onAdd={onAdd} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/book/:id" element={<BookDetails onAdd={onAdd} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cartItems={cartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+              onDeleteAll={onDeleteAll}
+            />
+          }
+        />
+        <Route path="/wishlist" element={<Wishlist onAdd={onAdd} />} />
 
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home onAdd={onAdd} />} />
         <Route path="/profile" element={<MyPage />}>
           <Route index element={<Navigate to="account" replace />} />
           <Route path="account" element={<Account />} />
-          <Route path="wishlist" element={<ProfileWishlist />} />
+          <Route path="wishlist" element={<ProfileWishlist onAdd={onAdd} />} />
           <Route path="orders" element={<Orders />} />
         </Route>
       </Routes>

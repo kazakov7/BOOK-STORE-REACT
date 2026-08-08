@@ -45,7 +45,7 @@ a {
   height: 37px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: var(--itemspacing-xxs, 32px);
 }
@@ -70,7 +70,7 @@ a {
   transition: 0.3s;
 }
 .navbar-right {
-  width: 250.1px;
+  width: 280.1px;
   height: 40px;
   display: flex;
   flex-direction: row;

@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import Button from "../../components/common/univ-button";
 import Container from "../../components/common/container";
 import "../../css/home.css";
+import type { CartItem } from "../../libs/types/search";
 const books = [
   {
     id: "1",
@@ -11,8 +12,9 @@ const books = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTep58Q4ePztYPXqMReHPkHlFWxXKMoHn4q_Lty-t7l7A&s=10",
     title: "Sapiens",
     author: "Yuval Noah",
-    price: "22",
+    price: 22,
     rating: 4.3,
+    language: "English",
   },
   {
     id: "2",
@@ -20,8 +22,9 @@ const books = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5O3_c4l-ASFVdasKXQYsMNsfwlNhAiOZvPSI-VgeW9Q&s=10",
     title: "Atomic Habits",
     author: "James Clear",
-    price: "45.5",
+    price: 45.5,
     rating: 3.5,
+    language: "korean",
   },
   {
     id: "3",
@@ -29,8 +32,9 @@ const books = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI5U7_4lfQsHDBrtRLdNu-I6GARqk96K2bWMVroS-N_A&s=10",
     title: "Dune",
     author: "Frank Herbert",
-    price: "67",
+    price: 67,
     rating: 4.5,
+    language: "Uzbek",
   },
   {
     id: "4",
@@ -38,47 +42,16 @@ const books = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbH53XDMIRSXpC3BryVk7D9K5p6srniw2P6wcENeesrw&s=10",
     title: "The Alchemist",
     author: "Paulo Coelho",
-    price: "76",
+    price: 76,
     rating: 5,
-  },
-  {
-    id: "5",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8A11fWQ6XXoA2F0cd5LHEE6s3g3jEDLxc26IrRfS5g&s=10",
-    title: "Rich dad & poor dad",
-    author: "Robert Kiosaki",
-    price: "230",
-    rating: 4.5,
-  },
-  {
-    id: "6",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbH53XDMIRSXpC3BryVk7D9K5p6srniw2P6wcENeesrw&s=10",
-    title: "The Alchemist",
-    author: "Paulo Coelho",
-    price: "76",
-    rating: 5,
-  },
-  {
-    id: "7",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5O3_c4l-ASFVdasKXQYsMNsfwlNhAiOZvPSI-VgeW9Q&s=10",
-    title: "Atomic Habits",
-    author: "James Clear",
-    price: "45.5",
-    rating: 3.5,
-  },
-  {
-    id: "8",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8A11fWQ6XXoA2F0cd5LHEE6s3g3jEDLxc26IrRfS5g&s=10",
-    title: "Rich dad & poor dad",
-    author: "Robert Kiosaki",
-    price: "230",
-    rating: 4.5,
+    language: "Uzbek",
   },
 ];
-export default function ProfileWishlist() {
+interface WishlistPageProps {
+  onAdd: (item: CartItem) => void;
+}
+export default function ProfileWishlist(props: WishlistPageProps) {
+  const { onAdd } = props;
   return (
     <Container>
       <NavLink to={"/books"} className={"new-arrriwals-card-frame"}>
@@ -114,7 +87,24 @@ export default function ProfileWishlist() {
               </div>
               <div className="book-card__meta">
                 <div className="book-card__price">${book.price}</div>
-                <Button className="book-card-btn" width="50%" height="35px">
+                <Button
+                  className="book-card-btn"
+                  width="50%"
+                  height="35px"
+                  onClick={(e) => {
+                    onAdd({
+                      _id: book.id,
+                      name: book.title,
+                      author: book.author,
+                      language: book.language,
+                      price: book.price,
+                      quantity: 1,
+                      image: book.image,
+                    });
+
+                    e.stopPropagation();
+                  }}
+                >
                   <svg
                     width="15"
                     height="105"

@@ -13,7 +13,8 @@ const mostViewedRetriewer = createSelector(
   retrieveNewArriwals,
   (newArriwals) => ({ newArriwals }),
 );
-export default function NewArriwals() {
+export default function NewArriwals(props: any) {
+  const { onAdd } = props;
   const history = useNavigate();
   const chosenBookHandler = (id: string) => {
     history(`/book/${id}`);
@@ -88,6 +89,19 @@ export default function NewArriwals() {
                             className="book-card-btn"
                             width="50%"
                             height="35px"
+                            onClick={(e) => {
+                              onAdd({
+                                _id: book._id,
+                                name: book.title,
+                                author: book.author,
+                                language: book.language,
+                                price: book.price,
+                                quantity: 1,
+                                image: book.images[0],
+                              });
+
+                              e.stopPropagation();
+                            }}
                           >
                             <svg
                               width="15"

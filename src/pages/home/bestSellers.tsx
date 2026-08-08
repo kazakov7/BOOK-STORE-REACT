@@ -14,7 +14,8 @@ const bestSellersRetriewer = createSelector(
   retrieveBestSellers,
   (bestSellers) => ({ bestSellers }),
 );
-export default function BestSellers() {
+export default function BestSellers(props: any) {
+  const { onAdd } = props;
   const history = useNavigate();
   const chosenBookHandler = (id: string) => {
     history(`/book/${id}`);
@@ -97,7 +98,23 @@ export default function BestSellers() {
                           </div>
                         </div>
                       </div>
-                      <Button height="40px" width="90%">
+                      <Button
+                        height="40px"
+                        width="90%"
+                        onClick={(e) => {
+                          onAdd({
+                            _id: book._id,
+                            name: book.title,
+                            author: book.author,
+                            language: book.language,
+                            price: book.price,
+                            quantity: 1,
+                            image: book.images[0],
+                          });
+
+                          e.stopPropagation();
+                        }}
+                      >
                         <svg
                           width="15"
                           height="105"

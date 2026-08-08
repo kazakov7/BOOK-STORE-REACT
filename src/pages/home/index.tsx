@@ -11,6 +11,7 @@ import { setBestSellers, setMostViewed, setNewArriwals } from "./slice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import ProductService from "../../service/product.service";
+import type { CartItem } from "../../libs/types/search";
 
 //redux slice & selektor
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -18,8 +19,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setBestSellers: (data: Book[]) => dispatch(setBestSellers(data)),
   setNewArriwals: (data: Book[]) => dispatch(setNewArriwals(data)),
 });
-export default function Home() {
-  // @ts-ignore
+
+interface HomePageProps {
+  onAdd: (item: CartItem) => void;
+}
+export default function Home(props: HomePageProps) {
+  const { onAdd } = props;
   const { setMostViewed, setBestSellers, setNewArriwals } =
     actionDispatch(useDispatch());
 
@@ -67,9 +72,10 @@ export default function Home() {
     <>
       <Header />
       <Categories />
-      <MostViewed />
-      <BestSellers />
-      <NewArriwals />
+      <MostViewed onAdd={onAdd} />
+      <BestSellers onAdd={onAdd} />
+
+      <NewArriwals onAdd={onAdd} />
       <PromoBanner />
     </>
   );

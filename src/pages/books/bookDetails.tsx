@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductService from "../../service/product.service";
 import { serverApi } from "../../libs/enums/config";
 import Container from "../../components/common/container";
+import type { CartItem } from "../../libs/types/search";
 const actionDispatch = (dispatch: Dispatch) => ({
   setChosenProduct: (data: Book) => dispatch(setChosenProduct(data)),
 });
@@ -31,8 +32,12 @@ const cosenProductRetriewer = createSelector(
     chosenProduct,
   }),
 );
+interface BookdetailsPageProps {
+  onAdd: (item: CartItem) => void;
+}
 
-export default function BookDetails() {
+export default function BookDetails(props: BookdetailsPageProps) {
+  const { onAdd } = props;
   const { id } = useParams<{ id: string }>();
   const [selectedImage, setSelectedImage] = useState(0);
   const { setChosenProduct } = actionDispatch(useDispatch());
@@ -154,7 +159,22 @@ export default function BookDetails() {
               </button>
             </div>
 
-            <button className="add-to-cart-btn">
+            <button
+              className="add-to-cart-btn"
+              onClick={(e) => {
+                onAdd({
+                  _id: chosenProduct._id,
+                  name: chosenProduct.title,
+                  author: chosenProduct.author,
+                  language: chosenProduct.language,
+                  price: chosenProduct.price,
+                  quantity: 1,
+                  image: chosenProduct.images[0],
+                });
+
+                e.stopPropagation();
+              }}
+            >
               <ShoppingCartIcon />
               Add to cart
             </button>

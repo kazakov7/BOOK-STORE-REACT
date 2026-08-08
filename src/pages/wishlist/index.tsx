@@ -1,11 +1,16 @@
+import type { CartItem } from "../../libs/types/search";
 import ProfileWishlist from "../myPage/wishlist";
 import Header from "./header";
 
-export default function Wishlist() {
+interface WishlistPageProps {
+  onAdd: (item: CartItem) => void;
+}
+export default function Wishlist(props: WishlistPageProps) {
+  const { onAdd } = props;
   return (
     <>
       <Header />
-      <ProfileWishlist />
+      <ProfileWishlist onAdd={onAdd} />
     </>
   );
 }
