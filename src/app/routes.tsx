@@ -5,13 +5,14 @@ import Login from "../pages/login";
 
 import Wishlist from "../pages/wishlist";
 import Books from "../pages/books";
-import BookDetails from "../pages/bookDetails";
+
 import MyPage from "../pages/myPage";
 import About from "../pages/about";
 import Orders from "../pages/myPage/orders";
 import ProfileWishlist from "../pages/myPage/wishlist";
 import Account from "../pages/myPage/profile";
 import SignUp from "../pages/signup";
+import BookDetails from "../pages/books/bookDetails";
 
 function AppRoutes() {
   return (

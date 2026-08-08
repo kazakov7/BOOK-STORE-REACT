@@ -1,4 +1,8 @@
-import type { BookCategory, BookStatus } from "../enums/product.enum";
+import type {
+  BookCategory,
+  BookStatus,
+  RatingFilter,
+} from "../enums/product.enum";
 
 export interface Book {
   _id: string;
@@ -11,7 +15,7 @@ export interface Book {
   status: BookStatus;
   images: string[];
   views: number;
-  averageRating: number;
+  averageRating: RatingFilter;
   description?: string;
   createdAt: Date;
   updatedAt: Date;

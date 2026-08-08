@@ -14,6 +14,12 @@ class ProductService {
       if (input.category) {
         url += `&category=${input.category}`;
       }
+      if (input.language) {
+        url += `&language=${input.language}`;
+      }
+      if (input.rating) {
+        url += `&rating=${input.rating}`;
+      }
       if (input.search) {
         url += `&search=${input.search}`;
       }

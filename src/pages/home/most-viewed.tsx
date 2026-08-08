@@ -29,7 +29,7 @@ export default function MostViewed() {
             </div>
           </div>
           <div className="section-bottom">
-            <NavLink to={"/books"} className={"new-arrriwals-card-frame"}>
+            <NavLink to={"/books"} className={"most-viewed-card-frame"}>
               {mostViewed.length !== 0 ? (
                 mostViewed.map((book: Book) => {
                   const imagePath = `${serverApi}/${book.images[0]}`;
@@ -43,7 +43,7 @@ export default function MostViewed() {
                         <div className="book-card__overlay" />
                         <div className="book-badge badge-trending">
                           <Eye size={13} />
-                          Most Viewed
+                          {book.views} views
                         </div>
 
                         <button

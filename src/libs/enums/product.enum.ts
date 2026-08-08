@@ -1,4 +1,5 @@
 export enum BookCategory {
+  ALL = "ALL",
   ROMANCE = "ROMANCE",
   SCIENCE = "SCIENCE",
   HISTORY = "HISTORY",
@@ -13,8 +14,14 @@ export enum BookStatus {
   OUT_OF_STOCK = "OUT_OF_STOCK",
 }
 export enum BookLanguage {
+  ALL = "ALL",
   UZBEK = "UZBEK",
   ENGLISH = "ENGLISH",
   KOREAN = "KOREAN",
   RUSSIAN = "RUSSIAN",
+}
+export enum RatingFilter {
+  THREE = 3,
+  FOUR = 4,
+  FIVE = 5,
 }
