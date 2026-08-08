@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Container from "../../components/common/container";
 import "../../css/home.css";
 import { BookOpen, Flame, Heart } from "lucide-react";
@@ -15,6 +15,10 @@ const bestSellersRetriewer = createSelector(
   (bestSellers) => ({ bestSellers }),
 );
 export default function BestSellers() {
+  const history = useNavigate();
+  const chosenBookHandler = (id: string) => {
+    history(`/book/${id}`);
+  };
   const { bestSellers } = useSelector(bestSellersRetriewer);
   console.log("bestSellers", bestSellers);
   return (
@@ -34,7 +38,7 @@ export default function BestSellers() {
             </div>
           </div>
           <div className="section-bottom">
-            <NavLink to={"/books"} className={"best-card-frame"}>
+            <div className={"best-card-frame"}>
               {bestSellers.length !== 0 ? (
                 bestSellers.map((item: any) => {
                   const book = item.book;
@@ -42,7 +46,11 @@ export default function BestSellers() {
 
                   const imagePath = `${serverApi}/${book.images[0]}`;
                   return (
-                    <div className="book-card" key={book._id}>
+                    <div
+                      className="book-card"
+                      key={book._id}
+                      onClick={() => chosenBookHandler(book._id)}
+                    >
                       <div className="book-card__cover">
                         <div
                           className="book-card__cover-inner"
@@ -118,7 +126,7 @@ export default function BestSellers() {
                   Most Viwed books are not available!
                 </Box>
               )}
-            </NavLink>
+            </div>
           </div>
         </div>
       </Container>

@@ -9,7 +9,7 @@ import { createSelector } from "reselect";
 import { retrieveBooks } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, type ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import ProductService from "../../service/product.service";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -21,7 +21,7 @@ import {
 } from "../../libs/enums/product.enum";
 import { serverApi } from "../../libs/enums/config";
 import Rating from "@mui/material/Rating";
-import { Pagination, Stack } from "@mui/material";
+import { Pagination } from "@mui/material";
 import PaginationItem from "@mui/material/PaginationItem";
 
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -47,7 +47,17 @@ export default function Sidebar() {
   const [searchText, setSearchText] = useState<string>("");
 
   const history = useNavigate();
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("category");
 
+  useEffect(() => {
+    if (category) {
+      searchCategoryHandler(category as BookCategory);
+    }
+  }, [category]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const product = new ProductService();
     product
@@ -104,7 +114,7 @@ export default function Sidebar() {
     setProductSearch({ ...productSearch });
   };
   const chosenBookHandler = (id: string) => {
-    history(`/books/${id}`);
+    history(`/book/${id}`);
   };
 
   const paginationHandler = (e: ChangeEvent<any>, value: number) => {

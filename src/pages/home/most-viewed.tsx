@@ -9,12 +9,17 @@ import { retrieveMostViewed } from "./selector";
 import { useSelector } from "react-redux";
 import type { Book } from "../../libs/types/product";
 import { serverApi } from "../../libs/enums/config";
-
+import { useNavigate } from "react-router-dom";
 const mostViewedRetriewer = createSelector(
   retrieveMostViewed,
   (mostViewed) => ({ mostViewed }),
 );
+
 export default function MostViewed() {
+  const history = useNavigate();
+  const chosenBookHandler = (id: string) => {
+    history(`/book/${id}`);
+  };
   const { mostViewed } = useSelector(mostViewedRetriewer);
   return (
     <>
@@ -29,12 +34,16 @@ export default function MostViewed() {
             </div>
           </div>
           <div className="section-bottom">
-            <NavLink to={"/books"} className={"most-viewed-card-frame"}>
+            <div className={"most-viewed-card-frame"}>
               {mostViewed.length !== 0 ? (
                 mostViewed.map((book: Book) => {
                   const imagePath = `${serverApi}/${book.images[0]}`;
                   return (
-                    <div className="book-card" key={book._id}>
+                    <div
+                      className="book-card"
+                      key={book._id}
+                      onClick={() => chosenBookHandler(book._id)}
+                    >
                       <div className="book-card__cover">
                         <div
                           className="book-card__cover-inner"
@@ -121,7 +130,7 @@ export default function MostViewed() {
                   Most Viwed books are not available!
                 </Box>
               )}
-            </NavLink>
+            </div>
           </div>
         </div>
       </Container>

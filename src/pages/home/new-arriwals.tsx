@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Container from "../../components/common/container";
 import { Box, Rating } from "@mui/material";
 import { BookOpen, Heart, Sparkles } from "lucide-react";
@@ -14,6 +14,10 @@ const mostViewedRetriewer = createSelector(
   (newArriwals) => ({ newArriwals }),
 );
 export default function NewArriwals() {
+  const history = useNavigate();
+  const chosenBookHandler = (id: string) => {
+    history(`/book/${id}`);
+  };
   const { newArriwals } = useSelector(mostViewedRetriewer);
   return (
     <>
@@ -30,12 +34,16 @@ export default function NewArriwals() {
             </div>
           </div>
           <div className="section-bottom">
-            <NavLink to={"/books"} className={"new-arrriwals-card-frame"}>
+            <div className={"new-arrriwals-card-frame"}>
               {newArriwals.length !== 0 ? (
                 newArriwals.map((book: Book) => {
                   const imagePath = `${serverApi}/${book.images[0]}`;
                   return (
-                    <div className="book-card" key={book._id}>
+                    <div
+                      className="book-card"
+                      key={book._id}
+                      onClick={() => chosenBookHandler(book._id)}
+                    >
                       <div className="book-card__cover">
                         <div
                           className="book-card__cover-inner"
@@ -121,7 +129,7 @@ export default function NewArriwals() {
                   Most Viwed books are not available!
                 </Box>
               )}
-            </NavLink>
+            </div>
           </div>
         </div>
       </Container>

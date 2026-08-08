@@ -1,7 +1,7 @@
 import type {
   BookCategory,
+  BookLanguage,
   BookStatus,
-  RatingFilter,
 } from "../enums/product.enum";
 
 export interface Book {
@@ -12,13 +12,18 @@ export interface Book {
   category: BookCategory;
   price: number;
   stock: number;
+  language: BookLanguage;
+  publishedYear: number;
   status: BookStatus;
   images: string[];
-  views: number;
-  averageRating: RatingFilter;
+  rating?: number;
+  averageRating?: number;
   description?: string;
+  views: number;
   createdAt: Date;
   updatedAt: Date;
+  pages: number;
+  ratingsCount?: number;
 }
 export interface BookInput {
   title: string;

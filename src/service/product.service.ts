@@ -8,6 +8,19 @@ class ProductService {
   constructor() {
     this.path = serverApi;
   }
+  public async getProduct(productId: string | undefined): Promise<Book> {
+    try {
+      const url = `${this.path}/user/book/${productId}`;
+
+      const result = await axios.get(url, { withCredentials: true });
+      console.log(result);
+      return result.data;
+    } catch (err) {
+      console.log("Error", err);
+      throw err;
+    }
+  }
+
   public async getProducts(input: BookInquery): Promise<Book[]> {
     try {
       let url = `${this.path}/user/product/all?order=${input.order}&page=${input.page}&limit=${input.limit}`;

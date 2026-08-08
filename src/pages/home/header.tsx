@@ -51,7 +51,7 @@ export default function Header() {
         <div className="header-right">
           <img src="/img/header-image.svg" alt="" />
           <div className="header-right-content">
-            <img src="/icons/Overlay.svg" alt="" />
+            <img src="/icons/about-design.svg" alt="" />
             <HashLink smooth to="/#best-sellers">
               <strong>#1this week</strong>
               <span>Atomic habits</span>
