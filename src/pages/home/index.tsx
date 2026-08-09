@@ -22,9 +22,11 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
 interface HomePageProps {
   onAdd: (item: CartItem) => void;
+  onToggle: (item: Book) => void;
+  isInWishlist: (id: string) => boolean;
 }
 export default function Home(props: HomePageProps) {
-  const { onAdd } = props;
+  const { onAdd, onToggle, isInWishlist } = props;
   const { setMostViewed, setBestSellers, setNewArriwals } =
     actionDispatch(useDispatch());
 
@@ -68,14 +70,30 @@ export default function Home(props: HomePageProps) {
         console.log(err);
       });
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Header />
       <Categories />
-      <MostViewed onAdd={onAdd} />
-      <BestSellers onAdd={onAdd} />
+      <MostViewed
+        onAdd={onAdd}
+        onToggle={onToggle}
+        isInWishlist={isInWishlist}
+      />
+      <BestSellers
+        onAdd={onAdd}
+        onToggle={onToggle}
+        isInWishlist={isInWishlist}
+      />
 
-      <NewArriwals onAdd={onAdd} />
+      <NewArriwals
+        onAdd={onAdd}
+        onToggle={onToggle}
+        isInWishlist={isInWishlist}
+      />
       <PromoBanner />
     </>
   );

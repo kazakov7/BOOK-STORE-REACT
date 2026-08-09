@@ -34,10 +34,12 @@ const booksRetriewer = createSelector(retrieveBooks, (allBooks) => ({
 
 interface SidebarProps {
   onAdd: (item: CartItem) => void;
+  onToggle: (item: Book) => void;
+  isInWishlist: (id: string) => boolean;
 }
 
 export default function Sidebar(props: SidebarProps) {
-  const { onAdd } = props;
+  const { onAdd, onToggle, isInWishlist } = props;
   const { setBooks } = actionDispatch(useDispatch());
   const { allBooks } = useSelector(booksRetriewer);
 
@@ -370,9 +372,18 @@ export default function Sidebar(props: SidebarProps) {
 
                 <button
                   aria-label="Sevimlilarga qo'shish"
-                  className="book-card__like-btn"
+                  className={`book-card__like-btn ${isInWishlist(book._id) ? "liked" : ""}`}
+                  onClick={(e) => {
+                    onToggle(book);
+                    e.stopPropagation();
+                  }}
                 >
-                  <Heart size={20} strokeWidth={1.75} />
+                  <Heart
+                    size={20}
+                    strokeWidth={1.75}
+                    color={isInWishlist(book._id) ? "#fff" : "black"}
+                    fill={isInWishlist(book._id) ? "#fff" : "none"}
+                  />
                 </button>
               </div>
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../css/cart.css";
 import {
   ArrowLeft,
@@ -106,13 +106,17 @@ interface CartProps {
   onDeleteAll: () => void;
 }
 export default function CartPage(props: CartProps) {
-  const { cartItems, onAdd, onDelete, onDeleteAll, onRemove } = props;
+  const { cartItems, onAdd, onDelete, onRemove } = props;
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const subtotal = cartItems.reduce((sum, b) => sum + b.price * b.quantity, 0);
   const tax = subtotal * 0.08;
   const total = subtotal + tax;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="cart-page">

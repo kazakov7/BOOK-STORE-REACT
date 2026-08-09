@@ -9,13 +9,21 @@ import { createSelector } from "reselect";
 import { retrieveBestSellers } from "./selector";
 import { useSelector } from "react-redux";
 import { serverApi } from "../../libs/enums/config";
+import type { CartItem } from "../../libs/types/search";
+import type { Book } from "../../libs/types/product";
 
 const bestSellersRetriewer = createSelector(
   retrieveBestSellers,
   (bestSellers) => ({ bestSellers }),
 );
-export default function BestSellers(props: any) {
-  const { onAdd } = props;
+interface BestSellersProps {
+  onAdd: (item: CartItem) => void;
+  onToggle: (item: Book) => void;
+  isInWishlist: (id: string) => boolean;
+}
+
+export default function BestSellers(props: BestSellersProps) {
+  const { onAdd, onToggle, isInWishlist } = props;
   const history = useNavigate();
   const chosenBookHandler = (id: string) => {
     history(`/book/${id}`);
@@ -66,9 +74,18 @@ export default function BestSellers(props: any) {
 
                         <button
                           aria-label="Sevimlilarga qo'shish"
-                          className="book-card__like-btn"
+                          className={`book-card__like-btn ${isInWishlist(book._id) ? "liked" : ""}`}
+                          onClick={(e) => {
+                            onToggle(book);
+                            e.stopPropagation();
+                          }}
                         >
-                          <Heart size={20} strokeWidth={1.75} />
+                          <Heart
+                            size={20}
+                            strokeWidth={1.75}
+                            color={isInWishlist(book._id) ? "#fff" : "black"}
+                            fill={isInWishlist(book._id) ? "#fff" : "none"}
+                          />
                         </button>
                       </div>
 

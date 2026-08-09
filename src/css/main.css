@@ -138,7 +138,7 @@ a {
   position: absolute;
 
   top: 1px;
-  right: -4px;
+  right: 6px;
 
   width: 18px;
   height: 18px;
@@ -294,4 +294,25 @@ a {
   font-size: 13px;
   color: #9a9a96;
   text-decoration: none;
+}
+.book-card__like-btn {
+  position: absolute;
+  bottom: 0px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.book-card__like-btn.liked {
+  background: #e63946;
+  border-color: #e63946;
 }

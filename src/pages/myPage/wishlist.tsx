@@ -5,70 +5,45 @@ import Button from "../../components/common/univ-button";
 import Container from "../../components/common/container";
 import "../../css/home.css";
 import type { CartItem } from "../../libs/types/search";
-const books = [
-  {
-    id: "1",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTep58Q4ePztYPXqMReHPkHlFWxXKMoHn4q_Lty-t7l7A&s=10",
-    title: "Sapiens",
-    author: "Yuval Noah",
-    price: 22,
-    rating: 4.3,
-    language: "English",
-  },
-  {
-    id: "2",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5O3_c4l-ASFVdasKXQYsMNsfwlNhAiOZvPSI-VgeW9Q&s=10",
-    title: "Atomic Habits",
-    author: "James Clear",
-    price: 45.5,
-    rating: 3.5,
-    language: "korean",
-  },
-  {
-    id: "3",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI5U7_4lfQsHDBrtRLdNu-I6GARqk96K2bWMVroS-N_A&s=10",
-    title: "Dune",
-    author: "Frank Herbert",
-    price: 67,
-    rating: 4.5,
-    language: "Uzbek",
-  },
-  {
-    id: "4",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbH53XDMIRSXpC3BryVk7D9K5p6srniw2P6wcENeesrw&s=10",
-    title: "The Alchemist",
-    author: "Paulo Coelho",
-    price: 76,
-    rating: 5,
-    language: "Uzbek",
-  },
-];
+import type { Book } from "../../libs/types/product";
+import { serverApi } from "../../libs/enums/config";
+
 interface WishlistPageProps {
   onAdd: (item: CartItem) => void;
+  onToggle: (item: Book) => void;
+  wishlistItems: Book[];
+  isInWishlist: (id: string) => boolean;
 }
 export default function ProfileWishlist(props: WishlistPageProps) {
-  const { onAdd } = props;
+  const { onAdd, onToggle, wishlistItems, isInWishlist } = props;
   return (
     <Container>
-      <NavLink to={"/books"} className={"new-arrriwals-card-frame"}>
-        {books.map((book) => (
-          <div className="book-card" key={book.id}>
+      <div className={"new-arrriwals-card-frame"}>
+        {wishlistItems.map((book) => (
+          <div className="book-card" key={book._id}>
             <div className="book-card__cover">
               <div
                 className="book-card__cover-inner"
-                style={{ backgroundImage: `url(${book.image})` }}
+                style={{
+                  backgroundImage: `url(${serverApi}/${book.images[0]})`,
+                }}
               ></div>
               <div className="book-card__overlay" />
 
               <button
                 aria-label="Sevimlilarga qo'shish"
-                className="book-card__like-btn"
+                className={`book-card__like-btn ${isInWishlist(book._id) ? "liked" : ""}`}
+                onClick={(e) => {
+                  onToggle(book);
+                  e.stopPropagation();
+                }}
               >
-                <Heart size={20} strokeWidth={1.75} />
+                <Heart
+                  size={20}
+                  strokeWidth={1.75}
+                  color={isInWishlist(book._id) ? "#fff" : "black"}
+                  fill={isInWishlist(book._id) ? "#fff" : "none"}
+                />
               </button>
             </div>
 
@@ -78,12 +53,14 @@ export default function ProfileWishlist(props: WishlistPageProps) {
 
               <div className="book-card__rating">
                 <Rating
-                  value={book.rating}
+                  value={book.averageRating}
                   precision={0.1}
                   readOnly
                   style={{ fontSize: "20px" }}
                 />
-                <span className="book-card__rating-value">{book.rating}</span>
+                <span className="book-card__rating-value">
+                  {book.averageRating}
+                </span>
               </div>
               <div className="book-card__meta">
                 <div className="book-card__price">${book.price}</div>
@@ -93,13 +70,13 @@ export default function ProfileWishlist(props: WishlistPageProps) {
                   height="35px"
                   onClick={(e) => {
                     onAdd({
-                      _id: book.id,
+                      _id: book._id,
                       name: book.title,
                       author: book.author,
                       language: book.language,
                       price: book.price,
                       quantity: 1,
-                      image: book.image,
+                      image: book.images[0],
                     });
 
                     e.stopPropagation();
@@ -128,7 +105,7 @@ export default function ProfileWishlist(props: WishlistPageProps) {
             </div>
           </div>
         ))}
-      </NavLink>
+      </div>
     </Container>
   );
 }

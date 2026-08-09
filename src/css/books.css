@@ -557,6 +557,22 @@
   position: absolute;
   bottom: 0px;
   right: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.main-frame .book-card__like-btn.liked {
+  background: #e63946;
+  border-color: #e63946;
 }
 .main-frame .book-card .add-btn {
   font-size: 18px;

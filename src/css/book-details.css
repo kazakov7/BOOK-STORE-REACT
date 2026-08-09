@@ -240,10 +240,9 @@
   flex-shrink: 0;
   cursor: pointer;
 }
-.icon-btn.heart:hover {
-  background-color: red;
-  color: white;
-  transition: 0.3s;
+.icon-btn.liked {
+  background: #e63946;
+  border-color: #e63946;
 }
 .perks-row {
   display: grid;

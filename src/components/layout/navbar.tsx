@@ -1,11 +1,11 @@
 import "../../css/main.css";
 import { NavLink } from "react-router-dom";
 import { SearchIcon } from "lucide-react";
-import { Badge } from "@mui/material";
 
 export default function Navbar(props: any) {
-  const { cartItems } = props;
-  const authMember = null;
+  const { cartItems, wishlistItems } = props;
+  const authMember = true;
+
   return (
     <>
       <div className="navbar-frame">
@@ -57,7 +57,7 @@ export default function Navbar(props: any) {
           <div className="icon-box">
             <NavLink to={"/wishlist"}>
               <img src="/icons/wishlist.svg" alt="" />
-              <span className="badge">1</span>
+              <span className="badge">{wishlistItems.length}</span>
             </NavLink>
           </div>
 

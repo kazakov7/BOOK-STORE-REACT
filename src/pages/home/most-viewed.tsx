@@ -10,13 +10,19 @@ import { useSelector } from "react-redux";
 import type { Book } from "../../libs/types/product";
 import { serverApi } from "../../libs/enums/config";
 import { useNavigate } from "react-router-dom";
+import type { CartItem } from "../../libs/types/search";
+import "../../css/main.css";
 const mostViewedRetriewer = createSelector(
   retrieveMostViewed,
   (mostViewed) => ({ mostViewed }),
 );
-
-export default function MostViewed(props: any) {
-  const { onAdd } = props;
+interface MostViewed {
+  onAdd: (item: CartItem) => void;
+  onToggle: (item: Book) => void;
+  isInWishlist: (id: string) => boolean;
+}
+export default function MostViewed(props: MostViewed) {
+  const { onAdd, onToggle, isInWishlist } = props;
   const history = useNavigate();
   const chosenBookHandler = (id: string) => {
     history(`/book/${id}`);
@@ -58,9 +64,18 @@ export default function MostViewed(props: any) {
 
                         <button
                           aria-label="Sevimlilarga qo'shish"
-                          className="book-card__like-btn"
+                          className={`book-card__like-btn ${isInWishlist(book._id) ? "liked" : ""}`}
+                          onClick={(e) => {
+                            onToggle(book);
+                            e.stopPropagation();
+                          }}
                         >
-                          <Heart size={20} strokeWidth={1.75} />
+                          <Heart
+                            size={20}
+                            strokeWidth={1.75}
+                            color={isInWishlist(book._id) ? "#fff" : "black"}
+                            fill={isInWishlist(book._id) ? "#fff" : "none"}
+                          />
                         </button>
                       </div>
 

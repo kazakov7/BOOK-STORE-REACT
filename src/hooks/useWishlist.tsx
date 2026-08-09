@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { CartItem } from "../libs/types/search";
+
 import type { Book } from "../libs/types/product";
 
 const useWishlist = () => {
@@ -7,56 +7,24 @@ const useWishlist = () => {
   const currentWishlist = cartJson ? JSON.parse(cartJson) : [];
   const [wishlistItems, setWishlistItems] = useState<Book[]>(currentWishlist);
   // HANDLERS
-  const onAdd = (input: Book) => {
-    const exist: any = wishlistItems.find(
-      (item: Book) => item._id === input._id,
-    );
-    if (!exist) {
-      const cartUpdate = [...wishlistItems, { ...input }];
-      setWishlistItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
-    }
+  const onToggle = (input: Book) => {
+    setWishlistItems((wishlist) => {
+      const exist = wishlist.find((item) => item._id === input._id);
+      if (exist) {
+        return wishlist.filter((item) => item._id !== input._id);
+      }
+      return [...wishlist, input];
+    });
   };
 
-  const onRemove = (input: Book) => {
-    const exist: any = wishlistItems.find(
-      (item: Book) => item._id === input._id,
-    );
-    if (exist.quantity === 1) {
-      const cartUpdate = wishlistItems.filter(
-        (item: Book) => item._id !== input._id,
-      );
-      setWishlistItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
-    } else {
-      const cartUpdate = wishlistItems.map((item: Book) =>
-        item._id === input._id
-          ? { ...exist, quantity: exist.quantity - 1 }
-          : item,
-      );
-      setWishlistItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
-    }
+  const isInWishlist = (id: string) => {
+    return wishlistItems.some((item) => item._id === id);
   };
 
-  const onDelete = (input: Book) => {
-    const cartUpdate = wishlistItems.filter(
-      (item: Book) => item._id !== input._id,
-    );
-    setWishlistItems(cartUpdate);
-    localStorage.setItem("cartData", JSON.stringify(cartUpdate));
-  };
-
-  const onDeleteAll = () => {
-    setWishlistItems([]);
-    localStorage.removeItem("cartData");
-  };
   return {
     wishlistItems,
-    onAdd,
-    onRemove,
-    onDelete,
-    onDeleteAll,
+    onToggle,
+    isInWishlist,
   };
 };
 export default useWishlist;

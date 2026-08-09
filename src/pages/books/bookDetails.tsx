@@ -34,10 +34,12 @@ const cosenProductRetriewer = createSelector(
 );
 interface BookdetailsPageProps {
   onAdd: (item: CartItem) => void;
+  onToggle: (item: Book) => void;
+  isInWishlist: (id: string) => boolean;
 }
 
 export default function BookDetails(props: BookdetailsPageProps) {
-  const { onAdd } = props;
+  const { onAdd, onToggle, isInWishlist } = props;
   const { id } = useParams<{ id: string }>();
   const [selectedImage, setSelectedImage] = useState(0);
   const { setChosenProduct } = actionDispatch(useDispatch());
@@ -179,8 +181,17 @@ export default function BookDetails(props: BookdetailsPageProps) {
               Add to cart
             </button>
 
-            <button className="icon-btn heart">
-              <Heart />
+            <button
+              className={`icon-btn  ${isInWishlist(chosenProduct._id) ? "liked" : ""}`}
+              onClick={(e) => {
+                onToggle(chosenProduct);
+                e.stopPropagation();
+              }}
+            >
+              <Heart
+                color={isInWishlist(chosenProduct._id) ? "#fff" : "black"}
+                fill={isInWishlist(chosenProduct._id) ? "#fff" : "none"}
+              />
             </button>
             <button className="icon-btn">
               <Share2 />
