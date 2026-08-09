@@ -2,35 +2,14 @@ import { useState } from "react";
 import { useGlobals } from "../../hooks/useGlobal";
 import type { T } from "../../libs/types/common";
 import { messages } from "../../libs/config";
-import { makeStyles } from "@mui/styles";
-import {
-  Backdrop,
-  Button,
-  Fade,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Fade, Modal, TextField, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { LogInIcon, Save } from "lucide-react";
+import { Save } from "lucide-react";
 import MemberService from "../../service/MemberService";
 import type { MemberUpdateInput } from "../../libs/types/member";
 import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme();
-const useStyles = makeStyles((theme: any) => ({
-  modal: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 2, 2),
-  },
-}));
 
 interface AuthenticationModalProps {
   updateOpen: boolean;
@@ -39,7 +18,6 @@ interface AuthenticationModalProps {
 
 export default function AuthenticationModal(props: AuthenticationModalProps) {
   const { updateOpen, handleUpdateClose } = props;
-  const classes = useStyles();
 
   const { authMember, setAuthMember } = useGlobals();
 

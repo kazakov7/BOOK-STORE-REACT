@@ -3,6 +3,7 @@ import { serverApi } from "../libs/enums/config";
 import type {
   Member,
   MemberInput,
+  MemberLoginInput,
   MemberUpdateInput,
 } from "../libs/types/member";
 
@@ -27,22 +28,22 @@ class MemberService {
       throw err;
     }
   }
-  // public async login(input: LoginInput): Promise<Member> {
-  //   try {
-  //     const url = this.path + "/member/login";
-  //     const result = await axios.post(url, input, { withCredentials: true });
-  //     console.log("login", result);
+  public async login(input: MemberLoginInput): Promise<Member> {
+    try {
+      const url = this.path + "/user/login";
+      const result = await axios.post(url, input, { withCredentials: true });
+      console.log("login", result);
 
-  //     const member: Member = result.data.member;
+      const member: Member = result.data.member;
 
-  //     localStorage.setItem("memberData", JSON.stringify(member));
+      localStorage.setItem("memberData", JSON.stringify(member));
 
-  //     return member;
-  //   } catch (err) {
-  //     console.log("Error, login", err);
-  //     throw err;
-  //   }
-  // }
+      return member;
+    } catch (err) {
+      console.log("Error, login", err);
+      throw err;
+    }
+  }
   public async logout(): Promise<void> {
     try {
       const url = this.path + "/user/logout";

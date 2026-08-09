@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthLayout from "../../components/layout/auth-layout";
 import "../../css/auth.css";
-import { LockKeyhole, Mail, Phone, PhoneCallIcon, User } from "lucide-react";
+import { LockKeyhole, Mail, Phone, User } from "lucide-react";
 import { useGlobals } from "../../hooks/useGlobal";
 import { useState } from "react";
 import type { T } from "../../libs/types/common";

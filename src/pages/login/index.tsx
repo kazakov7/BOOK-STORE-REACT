@@ -1,8 +1,46 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AuthLayout from "../../components/layout/auth-layout";
 import "../../css/auth.css";
 import { LockKeyhole, UserIcon } from "lucide-react";
+import { useState } from "react";
+import type { T } from "../../libs/types/common";
+import { messages } from "../../libs/config";
+import type { MemberLoginInput } from "../../libs/types/member";
+import MemberService from "../../service/MemberService";
+import { useGlobals } from "../../hooks/useGlobal";
 export default function Login() {
+  const [identifier, setMemberNick] = useState<string>("");
+  const [memberPassword, setMemberPassword] = useState<string>("");
+  const navigate = useNavigate();
+  const { setAuthMember } = useGlobals();
+
+  /** HANDLERS **/
+  const handleUsername = (e: T) => {
+    setMemberNick(e.target.value);
+  };
+  const handlePassword = (e: T) => {
+    setMemberPassword(e.target.value);
+  };
+
+  const handleLoginRequest = async () => {
+    try {
+      console.log("inputs", identifier, memberPassword);
+      const fullFil = identifier == "" && memberPassword == "";
+      if (fullFil) throw new Error(messages.error3);
+      const loginInput: MemberLoginInput = {
+        identifier: identifier,
+        memberPassword: memberPassword,
+      };
+      const member = new MemberService();
+      const result = await member.login(loginInput);
+
+      setAuthMember(result);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AuthLayout>
       <div className="auth-card">
@@ -14,7 +52,11 @@ export default function Login() {
             <label>Email or Username</label>
             <div className="input-with-icon">
               <UserIcon color="#3b82f6" />
-              <input type="email" placeholder="Email or username" />
+              <input
+                type="text"
+                placeholder="Email or username"
+                onChange={handleUsername}
+              />
             </div>
           </div>
 
@@ -24,7 +66,11 @@ export default function Login() {
             </div>
             <div className="input-with-icon">
               <LockKeyhole color="#3b82f6" />
-              <input type="password" placeholder="••••••••" />
+              <input
+                type="password"
+                placeholder="••••••••"
+                onChange={handlePassword}
+              />
               <button type="button" className="eye-btn">
                 <span className="icon-slot" />
               </button>
@@ -36,7 +82,11 @@ export default function Login() {
             Remember me
           </label>
 
-          <button type="submit" className="primary-btn">
+          <button
+            type="button"
+            className="primary-btn"
+            onClick={handleLoginRequest}
+          >
             Sign in <span className="icon-slot" />
           </button>
         </form>
