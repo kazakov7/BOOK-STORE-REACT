@@ -10,7 +10,12 @@ const user = {
   avatar: "/img/kevin2.jpg",
   email: "kevin@gmail.com",
 };
-export default function MyPageHeader() {
+
+interface MyPageProps {
+  handleLogoutRequest: () => void;
+}
+export default function MyPageHeader(props: MyPageProps) {
+  const { handleLogoutRequest } = props;
   const location = useLocation();
 
   return (
@@ -36,7 +41,11 @@ export default function MyPageHeader() {
             </div>
           </div>
 
-          <button className="logout-btn">
+          <button
+            type="submit"
+            className="logout-btn"
+            onClick={handleLogoutRequest}
+          >
             <img src="/icons/logout.jpg" alt="" />
             Log out
           </button>

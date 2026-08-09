@@ -28,6 +28,7 @@ interface AppProps {
   wishlistItems: Book[];
   onToggle: (item: Book) => void;
   isInWishlist: (id: string) => boolean;
+  handleLogoutRequest: () => void;
 }
 
 function AppRoutes(props: AppProps) {
@@ -40,10 +41,10 @@ function AppRoutes(props: AppProps) {
     wishlistItems,
     onToggle,
     isInWishlist,
+    handleLogoutRequest,
   } = props;
   const { setAuthMember } = useGlobals();
   const [updateOpen, setUpdateOpen] = useState<boolean>(false);
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleUpdateClose = () => setUpdateOpen(false);
 
@@ -107,13 +108,14 @@ function AppRoutes(props: AppProps) {
             />
           }
         />
-        <Route path="/profile" element={<MyPage />}>
+        <Route
+          path="/profile"
+          element={<MyPage handleLogoutRequest={handleLogoutRequest} />}
+        >
           <Route index element={<Navigate to="account" replace />} />
           <Route
             path="account"
-            element={
-              <Account setUpdateOpen={setUpdateOpen} anchorEl={anchorEl} />
-            }
+            element={<Account setUpdateOpen={setUpdateOpen} />}
           />
           <Route
             path="wishlist"

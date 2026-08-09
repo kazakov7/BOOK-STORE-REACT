@@ -3,7 +3,12 @@ import Tabs from "./tabs";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-export default function MyPage() {
+interface MyPageProps {
+  handleLogoutRequest: () => void;
+}
+
+export default function MyPage(props: MyPageProps) {
+  const { handleLogoutRequest } = props;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -18,7 +23,7 @@ export default function MyPage() {
         ease: "easeOut",
       }}
     >
-      <Tabs />
+      <Tabs handleLogoutRequest={handleLogoutRequest} />
       <Outlet />
     </motion.div>
   );

@@ -1,6 +1,10 @@
 import axios from "axios";
 import { serverApi } from "../libs/enums/config";
-import type { Member, MemberUpdateInput } from "../libs/types/member";
+import type {
+  Member,
+  MemberInput,
+  MemberUpdateInput,
+} from "../libs/types/member";
 
 class MemberService {
   private readonly path: string;
@@ -8,21 +12,21 @@ class MemberService {
   constructor() {
     this.path = serverApi;
   }
-  // public async signup(input: MemberInput): Promise<Member> {
-  //   try {
-  //     const url = this.path + "/member/signup";
-  //     const result = await axios.post(url, input, { withCredentials: true });
-  //     console.log("signup", result);
+  public async signup(input: MemberInput): Promise<Member> {
+    try {
+      const url = this.path + "/user/signup";
+      const result = await axios.post(url, input, { withCredentials: true });
+      console.log("signup", result);
 
-  //     const member: Member = result.data.member;
-  //     localStorage.setItem("memberData", JSON.stringify(member));
+      const member: Member = result.data.member;
+      localStorage.setItem("memberData", JSON.stringify(member));
 
-  //     return member;
-  //   } catch (err) {
-  //     console.log("Error, signup", err);
-  //     throw err;
-  //   }
-  // }
+      return member;
+    } catch (err) {
+      console.log("Error, signup", err);
+      throw err;
+    }
+  }
   // public async login(input: LoginInput): Promise<Member> {
   //   try {
   //     const url = this.path + "/member/login";
@@ -39,18 +43,18 @@ class MemberService {
   //     throw err;
   //   }
   // }
-  // public async logout(): Promise<void> {
-  //   try {
-  //     const url = this.path + "/member/logout";
-  //     const result = await axios.post(url, {}, { withCredentials: true });
-  //     console.log("logout", result);
+  public async logout(): Promise<void> {
+    try {
+      const url = this.path + "/user/logout";
+      const result = await axios.post(url, {}, { withCredentials: true });
+      console.log("logout", result);
 
-  //     localStorage.removeItem("memberData");
-  //   } catch (err) {
-  //     console.log("Error, login", err);
-  //     throw err;
-  //   }
-  // }
+      localStorage.removeItem("memberData");
+    } catch (err) {
+      console.log("Error, login", err);
+      throw err;
+    }
+  }
 
   public async updateMember(input: MemberUpdateInput): Promise<Member> {
     try {

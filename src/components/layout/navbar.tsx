@@ -1,10 +1,11 @@
 import "../../css/main.css";
 import { NavLink } from "react-router-dom";
 import { SearchIcon } from "lucide-react";
+import { useGlobals } from "../../hooks/useGlobal";
 
 export default function Navbar(props: any) {
   const { cartItems, wishlistItems } = props;
-  const authMember = true;
+  const { authMember } = useGlobals();
 
   return (
     <>
@@ -75,7 +76,11 @@ export default function Navbar(props: any) {
           ) : (
             <NavLink to={"/profile"}>
               <img
-                src="/img/default.jpg"
+                src={
+                  authMember.memberImage
+                    ? authMember.memberImage
+                    : "/img/default.png"
+                }
                 alt=""
                 style={{
                   width: "40px",

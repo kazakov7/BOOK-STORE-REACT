@@ -5,8 +5,8 @@ import Navbar from "./components/layout/navbar";
 import useBasket from "./hooks/useBasket";
 import useWishlist from "./hooks/useWishlist";
 import { useGlobals } from "./hooks/useGlobal";
-import { useState } from "react";
-import AuthenticationModal from "./components/settings";
+
+import MemberService from "./service/MemberService";
 
 function App() {
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
@@ -14,29 +14,18 @@ function App() {
   const location = useLocation();
   const { setAuthMember } = useGlobals();
 
-  const [loginOpen, setLoginOpen] = useState<boolean>(false);
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
   // HANDLERS
-  const handleLoginClose = () => setLoginOpen(false);
 
-  // const handleLogoutClick = (e: React.MouseEvent<HTMLElement>) => {
-  //   setAnchorEl(e.currentTarget);
-  // };
+  const handleLogoutRequest = async () => {
+    try {
+      const member = new MemberService();
+      await member.logout();
 
-  // const handleLogoutRequest = async () => {
-  //   try {
-  //     const member = new MemberService();
-  //     await member.logout();
-
-  //     await sweetTopSuccessAlert("scuccess", 700);
-  //     setAuthMember(null);
-  //   } catch (err) {
-  //     console.log(err);
-  //     sweetErrorHandling(messages.error1);
-  //   }
-  // };
-  // const handleCloseLogout = () => setAnchorEl(null);
+      setAuthMember(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const hideLayout =
     location.pathname === "/login" || location.pathname === "/signup";
@@ -55,6 +44,7 @@ function App() {
         wishlistItems={wishlistItems}
         onToggle={onToggle}
         isInWishlist={isInWishlist}
+        handleLogoutRequest={handleLogoutRequest}
       />
 
       {!hideLayout && <Footer />}

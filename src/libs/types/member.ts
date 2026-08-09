@@ -25,13 +25,13 @@ export interface MemberUpdateInput {
 }
 
 export interface MemberInput {
-  memberImage: string;
+  memberImage?: string;
   memberType?: memberType;
   memberStatus?: memberStatus;
   memberNick: string;
   memberPhone: string;
   memberPassword: string;
-  memberEmail: string;
+  memberEmail?: string;
 }
 export interface MemberLoginInput {
   identifier: string;

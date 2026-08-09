@@ -11,11 +11,10 @@ const user = {
 
 interface AccountProps {
   setUpdateOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  anchorEl: HTMLElement | null;
 }
 
 export default function Account(props: AccountProps) {
-  const { setUpdateOpen, anchorEl } = props;
+  const { setUpdateOpen } = props;
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
