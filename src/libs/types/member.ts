@@ -8,11 +8,20 @@ export interface Member {
   memberEmail?: string;
   memberPassword: string;
   memberImage?: string;
+  memberAddres?: string;
+  memberDesc?: string;
   createdAt: Date;
   updatedAt: Date;
 }
 export interface MemberUpdateInput {
-  memberStatus: memberStatus;
+  memberStatus?: memberStatus;
+  memberNick?: string;
+  memberPhone?: string;
+  memberEmail?: string;
+  memberPassword?: string;
+  memberImage?: string;
+  memberAddres?: string;
+  memberDesc?: string;
 }
 
 export interface MemberInput {

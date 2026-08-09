@@ -15,6 +15,9 @@ import SignUp from "../pages/signup";
 import BookDetails from "../pages/books/bookDetails";
 import type { CartItem } from "../libs/types/search";
 import type { Book } from "../libs/types/product";
+import { useGlobals } from "../hooks/useGlobal";
+import { useState } from "react";
+import AuthenticationModal from "../components/settings";
 
 interface AppProps {
   cartItems: CartItem[];
@@ -38,6 +41,12 @@ function AppRoutes(props: AppProps) {
     onToggle,
     isInWishlist,
   } = props;
+  const { setAuthMember } = useGlobals();
+  const [updateOpen, setUpdateOpen] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const handleUpdateClose = () => setUpdateOpen(false);
+
   return (
     <>
       <Routes>
@@ -100,7 +109,12 @@ function AppRoutes(props: AppProps) {
         />
         <Route path="/profile" element={<MyPage />}>
           <Route index element={<Navigate to="account" replace />} />
-          <Route path="account" element={<Account />} />
+          <Route
+            path="account"
+            element={
+              <Account setUpdateOpen={setUpdateOpen} anchorEl={anchorEl} />
+            }
+          />
           <Route
             path="wishlist"
             element={
@@ -115,6 +129,11 @@ function AppRoutes(props: AppProps) {
           <Route path="orders" element={<Orders />} />
         </Route>
       </Routes>
+
+      <AuthenticationModal
+        updateOpen={updateOpen}
+        handleUpdateClose={handleUpdateClose}
+      />
     </>
   );
 }

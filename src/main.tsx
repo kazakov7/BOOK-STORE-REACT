@@ -4,13 +4,20 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import ContextProvider from "./context/contextProvider";
+import { ThemeProvider } from "@mui/styles";
+import { theme } from "./components/settings";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ContextProvider>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </ContextProvider>
     </Provider>
   </StrictMode>,
 );

@@ -8,7 +8,14 @@ const user = {
   email: "kevin@gmail.com",
   addres: "seoul,dongdemun",
 };
-export default function Account() {
+
+interface AccountProps {
+  setUpdateOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  anchorEl: HTMLElement | null;
+}
+
+export default function Account(props: AccountProps) {
+  const { setUpdateOpen, anchorEl } = props;
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
@@ -23,7 +30,13 @@ export default function Account() {
         <div className="account-left">
           <div className="account-header">
             <strong>Personal information</strong>
-            <button className="edit-btn">
+            <button
+              className="edit-btn"
+              onClick={() => {
+                console.log("CLICK");
+                setUpdateOpen(true);
+              }}
+            >
               <img src="/icons/edit.svg" alt="" />
               Edit
             </button>
