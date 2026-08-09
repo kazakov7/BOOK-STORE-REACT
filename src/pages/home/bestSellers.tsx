@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { serverApi } from "../../libs/enums/config";
 import type { CartItem } from "../../libs/types/search";
 import type { Book } from "../../libs/types/product";
+import { motion } from "framer-motion";
 
 const bestSellersRetriewer = createSelector(
   retrieveBestSellers,
@@ -31,7 +32,15 @@ export default function BestSellers(props: BestSellersProps) {
   const { bestSellers } = useSelector(bestSellersRetriewer);
   console.log("bestSellers", bestSellers);
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.7,
+        ease: "easeOut",
+      }}
+    >
       <Container>
         <div
           id="best-sellers"
@@ -164,6 +173,6 @@ export default function BestSellers(props: BestSellersProps) {
           </div>
         </div>
       </Container>
-    </>
+    </motion.div>
   );
 }

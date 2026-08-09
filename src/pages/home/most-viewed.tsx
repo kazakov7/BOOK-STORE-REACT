@@ -11,6 +11,7 @@ import type { Book } from "../../libs/types/product";
 import { serverApi } from "../../libs/enums/config";
 import { useNavigate } from "react-router-dom";
 import type { CartItem } from "../../libs/types/search";
+import { motion } from "framer-motion";
 import "../../css/main.css";
 const mostViewedRetriewer = createSelector(
   retrieveMostViewed,
@@ -29,7 +30,15 @@ export default function MostViewed(props: MostViewed) {
   };
   const { mostViewed } = useSelector(mostViewedRetriewer);
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 1,
+        ease: "easeOut",
+      }}
+    >
       <Container>
         <div className="section-frame" style={{ marginTop: "100px" }}>
           <div className="section-top">
@@ -163,6 +172,6 @@ export default function MostViewed(props: MostViewed) {
           </div>
         </div>
       </Container>
-    </>
+    </motion.div>
   );
 }

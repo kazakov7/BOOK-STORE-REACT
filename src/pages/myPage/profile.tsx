@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import "../../css/myPage.css";
 
 const user = {
@@ -9,84 +10,94 @@ const user = {
 };
 export default function Account() {
   return (
-    <div className="account-frame">
-      <div className="account-left">
-        <div className="account-header">
-          <strong>Personal information</strong>
-          <button className="edit-btn">
-            <img src="/icons/edit.svg" alt="" />
-            Edit
-          </button>
-        </div>
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.8,
+        ease: "easeOut",
+      }}
+    >
+      <div className="account-frame">
+        <div className="account-left">
+          <div className="account-header">
+            <strong>Personal information</strong>
+            <button className="edit-btn">
+              <img src="/icons/edit.svg" alt="" />
+              Edit
+            </button>
+          </div>
 
-        <div className="info-item">
-          <img className="info-icon" src={user.avatar} />
-          <div className="info-content">
-            <span>Nickname</span>
-            <strong>{user.name}</strong>
+          <div className="info-item">
+            <img className="info-icon" src={user.avatar} />
+            <div className="info-content">
+              <span>Nickname</span>
+              <strong>{user.name}</strong>
+            </div>
+          </div>
+
+          <div className="info-item">
+            <img src="/icons/email.jpg" alt="" className="info-icon" />
+
+            <div className="info-content">
+              <span>Email</span>
+              <strong>{user.email}</strong>
+            </div>
+          </div>
+
+          <div className="info-item">
+            <img src="/icons/location.svg" alt="" className="info-icon" />
+
+            <div className="info-content">
+              <span>Address</span>
+              <strong>{user.addres ? user.addres : "No addres info"}</strong>
+            </div>
+          </div>
+
+          <div className="info-item border-none">
+            <img src="/icons/payment.svg" alt="" className="info-icon" />
+
+            <div className="info-content">
+              <span>Payment</span>
+              <strong>Visa ending in 4242</strong>
+            </div>
           </div>
         </div>
 
-        <div className="info-item">
-          <img src="/icons/email.jpg" alt="" className="info-icon" />
+        <div className="account-right">
+          <div className="stats-card">
+            <span className="card-title">READING STATS</span>
 
-          <div className="info-content">
-            <span>Email</span>
-            <strong>{user.email}</strong>
+            <div className="stat">
+              <span>Books read</span>
+              <strong>27</strong>
+            </div>
+
+            <div className="stat">
+              <span>In wishlist</span>
+              <strong>4</strong>
+            </div>
+
+            <div className="stat">
+              <span>Orders</span>
+              <strong>8</strong>
+            </div>
           </div>
-        </div>
 
-        <div className="info-item">
-          <img src="/icons/location.svg" alt="" className="info-icon" />
+          <div className="goal-card">
+            <strong>Reading goal</strong>
 
-          <div className="info-content">
-            <span>Address</span>
-            <strong>{user.addres ? user.addres : "No addres info"}</strong>
-          </div>
-        </div>
+            <p className="goal-text">27 of 30 books this year</p>
 
-        <div className="info-item border-none">
-          <img src="/icons/payment.svg" alt="" className="info-icon" />
+            <div className="progress">
+              <div className="progress-fill"></div>
+            </div>
 
-          <div className="info-content">
-            <span>Payment</span>
-            <strong>Visa ending in 4242</strong>
+            <span className="goal-status">90% complete — almost there!</span>
           </div>
         </div>
       </div>
-
-      <div className="account-right">
-        <div className="stats-card">
-          <span className="card-title">READING STATS</span>
-
-          <div className="stat">
-            <span>Books read</span>
-            <strong>27</strong>
-          </div>
-
-          <div className="stat">
-            <span>In wishlist</span>
-            <strong>4</strong>
-          </div>
-
-          <div className="stat">
-            <span>Orders</span>
-            <strong>8</strong>
-          </div>
-        </div>
-
-        <div className="goal-card">
-          <strong>Reading goal</strong>
-
-          <p className="goal-text">27 of 30 books this year</p>
-
-          <div className="progress">
-            <div className="progress-fill"></div>
-          </div>
-
-          <span className="goal-status">90% complete — almost there!</span>
-        </div>
-      </div>
-    </div>
+    </motion.div>
   );
 }

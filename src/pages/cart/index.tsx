@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import type { CartItem } from "../../libs/types/search";
 import { serverApi } from "../../libs/enums/config";
 import EmptyCart from "../../components/common/empty-cart";
+import { motion } from "framer-motion";
 
 function CartItemRow({ book, onAdd, onDelete, onRemove }: any) {
   return (
@@ -119,7 +120,16 @@ export default function CartPage(props: CartProps) {
   }, []);
 
   return (
-    <div className="cart-page">
+    <motion.div
+      className="cart-page"
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.8,
+        ease: "easeOut",
+      }}
+    >
       <NavLink to={"/books"} className="continue-link">
         <ArrowLeft size={22} />
         Continue shopping
@@ -184,6 +194,6 @@ export default function CartPage(props: CartProps) {
         </div>
         <OrderSummary subtotal={subtotal} tax={tax} total={total} />
       </div>
-    </div>
+    </motion.div>
   );
 }

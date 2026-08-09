@@ -2,6 +2,7 @@ import { Avatar, Tab, Tabs } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import "../../css/myPage.css";
 import Container from "../../components/common/container";
+import { motion } from "framer-motion";
 
 const user = {
   id: "1",
@@ -13,7 +14,16 @@ export default function MyPageHeader() {
   const location = useLocation();
 
   return (
-    <div className="mypage-header">
+    <motion.div
+      className="mypage-header"
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.8,
+        ease: "easeOut",
+      }}
+    >
       <Container>
         <div className="mypage-top">
           <div className="profile-info">
@@ -55,6 +65,6 @@ export default function MyPageHeader() {
           />
         </Tabs>
       </Container>
-    </div>
+    </motion.div>
   );
 }

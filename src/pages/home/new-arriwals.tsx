@@ -11,6 +11,7 @@ import { serverApi } from "../../libs/enums/config";
 import type { Book } from "../../libs/types/product";
 import "../../css/main.css";
 import type { CartItem } from "../../libs/types/search";
+import { motion } from "framer-motion";
 const mostViewedRetriewer = createSelector(
   retrieveNewArriwals,
   (newArriwals) => ({ newArriwals }),
@@ -29,7 +30,15 @@ export default function NewArriwals(props: NewArriwalsProps) {
   };
   const { newArriwals } = useSelector(mostViewedRetriewer);
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 1,
+        ease: "easeOut",
+      }}
+    >
       <Container>
         <div className="section-frame" style={{ marginTop: "100px" }}>
           <div className="section-top">
@@ -164,6 +173,6 @@ export default function NewArriwals(props: NewArriwalsProps) {
           </div>
         </div>
       </Container>
-    </>
+    </motion.div>
   );
 }

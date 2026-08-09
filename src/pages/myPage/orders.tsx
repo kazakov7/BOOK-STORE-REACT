@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Container from "../../components/common/container";
 import "../../css/myPage.css";
 const orders = [
@@ -40,44 +41,54 @@ const orders = [
 ];
 export default function Orders() {
   return (
-    <Container>
-      {orders.map((ele) => {
-        return (
-          <div className="order-card">
-            <div className="order-top">
-              <div className="order-info">
-                <strong className="order-number">Order #{ele.orderId}</strong>
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.8,
+        ease: "easeOut",
+      }}
+    >
+      <Container>
+        {orders.map((ele) => {
+          return (
+            <div className="order-card">
+              <div className="order-top">
+                <div className="order-info">
+                  <strong className="order-number">Order #{ele.orderId}</strong>
 
-                <span className="order-date">Placed on {ele.createdAt}</span>
+                  <span className="order-date">Placed on {ele.createdAt}</span>
+                </div>
+
+                <div className="order-status">
+                  <span className="status-badge">● {ele.status}</span>
+
+                  <strong className="order-price">${ele.price}</strong>
+                </div>
               </div>
 
-              <div className="order-status">
-                <span className="status-badge">● {ele.status}</span>
-
-                <strong className="order-price">${ele.price}</strong>
-              </div>
-            </div>
-
-            <div className="order-books">
-              {ele.orderedBooks.map((book) => {
-                return (
-                  <div className="book-item">
-                    <img className="book-image" src={book.image} />
-                    <div className="book-info">
-                      <strong>{book.name}</strong>
-                      <span>{book.author}</span>
+              <div className="order-books">
+                {ele.orderedBooks.map((book) => {
+                  return (
+                    <div className="book-item">
+                      <img className="book-image" src={book.image} />
+                      <div className="book-info">
+                        <strong>{book.name}</strong>
+                        <span>{book.author}</span>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
 
-            <div className="order-footer">
-              <button>View receipt →</button>
+              <div className="order-footer">
+                <button>View receipt →</button>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </Container>
+          );
+        })}
+      </Container>
+    </motion.div>
   );
 }

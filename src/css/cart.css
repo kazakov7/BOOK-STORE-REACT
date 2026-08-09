@@ -321,7 +321,9 @@ body {
   border-radius: 12px;
   text-align: center;
 }
-
+.wishlist.empty-cart {
+  width: 100%;
+}
 .empty-cart-icon {
   width: 80px;
   height: 80px;

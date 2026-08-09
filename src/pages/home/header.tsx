@@ -1,9 +1,18 @@
 import { NavLink } from "react-router-dom";
 import "../../css/home.css";
 import { HashLink } from "react-router-hash-link";
+import { motion } from "framer-motion";
 export default function Header() {
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 1,
+        ease: "easeOut",
+      }}
+    >
       <div className="header-frame">
         <div className="header-left">
           <div className="content-badge">
@@ -59,6 +68,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 }
