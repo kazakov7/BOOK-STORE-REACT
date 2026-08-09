@@ -1,13 +1,14 @@
-import Container from "../common/container";
 import "../../css/main.css";
 import { NavLink } from "react-router-dom";
 import { SearchIcon } from "lucide-react";
+import { Badge } from "@mui/material";
 
-export default function Navbar() {
+export default function Navbar(props: any) {
+  const { cartItems } = props;
   const authMember = null;
   return (
     <>
-      <Container className="navbar-frame">
+      <div className="navbar-frame">
         <div className="navbar-left">
           <NavLink to={"/"}>
             <img src="/icons/logo.png" alt="" />
@@ -63,7 +64,7 @@ export default function Navbar() {
           <div className="icon-box">
             <NavLink to={"/cart"}>
               <img src="/icons/cart.svg" alt="" />
-              <span className="badge">2</span>
+              <span className="badge">{cartItems.length}</span>
             </NavLink>
           </div>
 
@@ -87,7 +88,7 @@ export default function Navbar() {
             </NavLink>
           )}
         </div>
-      </Container>
+      </div>
     </>
   );
 }

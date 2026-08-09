@@ -59,7 +59,7 @@ export default function BookDetails(props: BookdetailsPageProps) {
   if (!chosenProduct) return null;
 
   return (
-    <Container>
+    <Container className="book-details">
       <Breadcrumbs className="breadCrumbs">
         <Link to="/">Home</Link>
         <Link to="/books">Books</Link>

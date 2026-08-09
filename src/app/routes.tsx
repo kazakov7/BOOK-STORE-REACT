@@ -14,9 +14,18 @@ import Account from "../pages/myPage/profile";
 import SignUp from "../pages/signup";
 import BookDetails from "../pages/books/bookDetails";
 import useBasket from "../hooks/useBasket";
+import type { CartItem } from "../libs/types/search";
 
-function AppRoutes() {
-  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
+interface AppProps {
+  cartItems: CartItem[];
+  onAdd: (item: CartItem) => void;
+  onRemove: (item: CartItem) => void;
+  onDelete: (item: CartItem) => void;
+  onDeleteAll: () => void;
+}
+
+function AppRoutes(props: AppProps) {
+  const { cartItems, onAdd, onDelete, onDeleteAll, onRemove } = props;
   return (
     <>
       <Routes>

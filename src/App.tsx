@@ -2,8 +2,10 @@ import { useLocation } from "react-router-dom";
 import AppRoutes from "./app/routes";
 import Footer from "./components/layout/footer";
 import Navbar from "./components/layout/navbar";
+import useBasket from "./hooks/useBasket";
 
 function App() {
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
   const location = useLocation();
 
   const hideLayout =
@@ -11,9 +13,15 @@ function App() {
 
   return (
     <>
-      {!hideLayout && <Navbar />}
+      {!hideLayout && <Navbar cartItems={cartItems} />}
 
-      <AppRoutes />
+      <AppRoutes
+        cartItems={cartItems}
+        onAdd={onAdd}
+        onRemove={onRemove}
+        onDelete={onDelete}
+        onDeleteAll={onDeleteAll}
+      />
 
       {!hideLayout && <Footer />}
     </>

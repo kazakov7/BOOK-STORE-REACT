@@ -12,6 +12,7 @@
 
 .books-header-section {
   width: 100%;
+  margin-top: 73px;
   height: 219px;
   padding: 48px 110px;
   box-sizing: border-box;
@@ -57,7 +58,7 @@
 .sidebar-frame {
   width: 260px;
   height: 1700px;
-  margin-left: 160px;
+  margin-left: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

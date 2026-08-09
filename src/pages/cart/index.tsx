@@ -106,7 +106,6 @@ interface CartProps {
   onDeleteAll: () => void;
 }
 export default function CartPage(props: CartProps) {
-  //@ts-ignore
   const { cartItems, onAdd, onDelete, onDeleteAll, onRemove } = props;
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
