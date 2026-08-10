@@ -1,13 +1,7 @@
 import { motion } from "framer-motion";
 import "../../css/myPage.css";
-
-const user = {
-  id: "1",
-  name: "Kevin",
-  avatar: "/img/kevin2.jpg",
-  email: "kevin@gmail.com",
-  addres: "seoul,dongdemun",
-};
+import { useGlobals } from "../../hooks/useGlobal";
+import { serverApi } from "../../libs/enums/config";
 
 interface AccountProps {
   setUpdateOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,6 +9,7 @@ interface AccountProps {
 
 export default function Account(props: AccountProps) {
   const { setUpdateOpen } = props;
+  const { authMember } = useGlobals();
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
@@ -32,7 +27,6 @@ export default function Account(props: AccountProps) {
             <button
               className="edit-btn"
               onClick={() => {
-                console.log("CLICK");
                 setUpdateOpen(true);
               }}
             >
@@ -42,10 +36,17 @@ export default function Account(props: AccountProps) {
           </div>
 
           <div className="info-item">
-            <img className="info-icon" src={user.avatar} />
+            <img
+              className="info-icon"
+              src={
+                authMember?.memberImage
+                  ? `${serverApi}/${authMember.memberImage}`
+                  : "/img/default.png"
+              }
+            />
             <div className="info-content">
               <span>Nickname</span>
-              <strong>{user.name}</strong>
+              <strong>{authMember?.memberNick}</strong>
             </div>
           </div>
 
@@ -54,7 +55,16 @@ export default function Account(props: AccountProps) {
 
             <div className="info-content">
               <span>Email</span>
-              <strong>{user.email}</strong>
+              <strong>{authMember?.memberEmail}</strong>
+            </div>
+          </div>
+
+          <div className="info-item border-none">
+            <img src="/icons/phone-number.png" alt="" className="info-icon" />
+
+            <div className="info-content">
+              <span>Phone Number</span>
+              <strong>{authMember?.memberPhone}</strong>
             </div>
           </div>
 
@@ -63,16 +73,24 @@ export default function Account(props: AccountProps) {
 
             <div className="info-content">
               <span>Address</span>
-              <strong>{user.addres ? user.addres : "No addres info"}</strong>
+              <strong>
+                {authMember?.memberAddres
+                  ? authMember.memberAddres
+                  : "No addres info"}
+              </strong>
             </div>
           </div>
 
           <div className="info-item border-none">
-            <img src="/icons/payment.svg" alt="" className="info-icon" />
+            <img src="/icons/phone-number.png" alt="" className="info-icon" />
 
             <div className="info-content">
-              <span>Payment</span>
-              <strong>Visa ending in 4242</strong>
+              <span>BIO</span>
+              <strong>
+                {authMember?.memberDesc
+                  ? authMember.memberDesc
+                  : "no description info"}
+              </strong>
             </div>
           </div>
         </div>

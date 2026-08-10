@@ -4,10 +4,11 @@ import type { T } from "../../libs/types/common";
 import { messages } from "../../libs/config";
 import { Button, Fade, Modal, TextField, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { Save } from "lucide-react";
+import { Camera, Save } from "lucide-react";
 import MemberService from "../../service/MemberService";
 import type { MemberUpdateInput } from "../../libs/types/member";
 import { createTheme } from "@mui/material/styles";
+import { serverApi } from "../../libs/enums/config";
 
 export const theme = createTheme();
 
@@ -29,7 +30,13 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       memberAddres: authMember?.memberAddres,
       memberDesc: authMember?.memberDesc,
       memberImage: authMember?.memberImage,
+      memberEmail: authMember?.memberEmail,
     },
+  );
+  const [memberImage, setMemberImage] = useState<string>(
+    authMember?.memberImage
+      ? `${serverApi}/${authMember.memberImage}`
+      : "/icons/default.png",
   );
 
   // HANDLERS
@@ -47,6 +54,10 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
     memberUpdateInput.memberAddres = e.target.value;
     setMemberUpdateInput({ ...memberUpdateInput });
   };
+  const memberEmailHandler = (e: T) => {
+    memberUpdateInput.memberEmail = e.target.value;
+    setMemberUpdateInput({ ...memberUpdateInput });
+  };
 
   const memberDescriptionHandler = (e: T) => {
     memberUpdateInput.memberDesc = e.target.value;
@@ -55,6 +66,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 
   const handleSubmitButton = async () => {
     try {
+      console.log(memberUpdateInput.memberDesc);
       if (!authMember) throw new Error(messages.error2);
 
       if (
@@ -71,9 +83,28 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       const result = await member.updateMember(memberUpdateInput);
 
       setAuthMember(result);
+      handleUpdateClose();
       await console.log("result", result);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const handleImageViewer = (e: T) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    const fileType = file.type;
+
+    const validateImageTypes = ["image/jpg", "image/jpeg", "image/png"];
+
+    if (!validateImageTypes.includes(fileType)) {
+      console.log(messages.error5);
+    } else {
+      memberUpdateInput.memberImage = file;
+      setMemberUpdateInput({ ...memberUpdateInput });
+      setMemberImage(URL.createObjectURL(file));
     }
   };
 
@@ -94,151 +125,208 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
           <Stack
             sx={{
               width: "100%",
-              maxWidth: "620px",
+              maxWidth: "560px",
+              maxHeight: "90vh",
               bgcolor: "#fff",
-              borderRadius: "24px",
+              borderRadius: "20px",
               overflow: "hidden",
-              boxShadow: "0 25px 70px rgba(0,0,0,0.18)",
               outline: "none",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.2)",
             }}
           >
-            {/* Header */}
+            {/* HEADER */}
             <Stack
               sx={{
-                px: 4,
-                py: 3,
-                background: "linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)",
-                color: "#fff",
+                px: 3,
+                py: 2.5,
+                borderBottom: "1px solid #eee",
               }}
             >
               <Typography
-                variant="h5"
                 sx={{
+                  fontSize: "22px",
                   fontWeight: 700,
-                  letterSpacing: "-0.5px",
+                  color: "#111827",
                 }}
               >
                 Update Profile
               </Typography>
 
               <Typography
-                variant="body2"
                 sx={{
-                  mt: 0.5,
-                  opacity: 0.9,
+                  mt: 0.4,
+                  fontSize: "14px",
+                  color: "#6b7280",
                 }}
               >
                 Update your personal information
               </Typography>
             </Stack>
 
-            {/* Form */}
+            {/* CONTENT */}
             <Stack
               sx={{
-                px: 4,
-                py: 4,
-                gap: 2.2,
+                px: 3,
+                py: 3,
+                gap: 2,
+                overflowY: "auto",
               }}
             >
-              <TextField
-                fullWidth
-                label="Username"
-                variant="outlined"
-                onChange={memberNickHandler}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "12px",
-                  },
-                }}
-                value={authMember?.memberNick}
-              />
-
-              <TextField
-                fullWidth
-                label="Phone number"
-                variant="outlined"
-                onChange={memberPhoneHandler}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "12px",
-                  },
-                }}
-                value={authMember?.memberPhone}
-              />
-
-              <TextField
-                fullWidth
-                label="Address"
-                variant="outlined"
-                onChange={memberAdressHandler}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "12px",
-                  },
-                }}
-                value={
-                  authMember?.memberAddres
-                    ? authMember.memberAddres
-                    : "no address"
-                }
-              />
-
-              <TextField
-                fullWidth
-                label="Description"
-                variant="outlined"
-                multiline
-                rows={3}
-                onChange={memberDescriptionHandler}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "12px",
-                  },
-                }}
-                value={
-                  authMember?.memberDesc
-                    ? authMember.memberDesc
-                    : "no description"
-                }
-              />
-
-              {/* Buttons */}
+              {/* IMAGE */}
               <Stack
                 sx={{
                   flexDirection: "row",
-                  justifyContent: "flex-end",
-                  gap: 1.5,
-                  mt: 1,
+                  alignItems: "center",
+                  gap: 2,
+                  pb: 1,
                 }}
               >
-                <Button
-                  onClick={handleUpdateClose}
-                  variant="outlined"
-                  sx={{
-                    borderRadius: "12px",
-                    px: 3,
-                    textTransform: "none",
-                    fontWeight: 600,
+                <img
+                  src={memberImage}
+                  alt="profile"
+                  style={{
+                    width: "76px",
+                    height: "76px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    border: "2px solid #e5e7eb",
                   }}
-                >
-                  Cancel
-                </Button>
+                />
 
-                <Button
-                  onClick={handleSubmitButton}
-                  variant="contained"
-                  startIcon={<Save />}
-                  sx={{
-                    borderRadius: "12px",
-                    px: 3,
-                    textTransform: "none",
-                    fontWeight: 600,
-                    boxShadow: "0 8px 20px rgba(25,118,210,0.25)",
-                  }}
-                >
-                  Update Profile
-                </Button>
+                <Stack sx={{ gap: 0.5 }}>
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: "#374151",
+                    }}
+                  >
+                    Profile photo
+                  </Typography>
+
+                  <Button
+                    component="label"
+                    variant="outlined"
+                    startIcon={<Camera size={17} />}
+                    sx={{
+                      width: "fit-content",
+                      borderRadius: "9px",
+                      textTransform: "none",
+                      fontSize: "13px",
+                      fontWeight: 600,
+                      px: 1.8,
+                      py: 0.7,
+                    }}
+                  >
+                    Change photo
+                    <input
+                      hidden
+                      type="file"
+                      accept="image/png,image/jpeg,image/jpg"
+                      onChange={handleImageViewer}
+                    />
+                  </Button>
+                </Stack>
               </Stack>
+
+              {/* USERNAME */}
+              <TextField
+                fullWidth
+                size="small"
+                label="Username"
+                value={memberUpdateInput.memberNick || ""}
+                onChange={memberNickHandler}
+              />
+
+              {/* PHONE + EMAIL */}
+              <Stack
+                sx={{
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: 2,
+                }}
+              >
+                <TextField
+                  fullWidth
+                  size="small"
+                  label="Phone number"
+                  value={memberUpdateInput.memberPhone || ""}
+                  onChange={memberPhoneHandler}
+                />
+
+                <TextField
+                  fullWidth
+                  size="small"
+                  type="email"
+                  label="Email"
+                  value={memberUpdateInput.memberEmail || ""}
+                  onChange={memberEmailHandler}
+                />
+              </Stack>
+
+              {/* ADDRESS */}
+              <TextField
+                fullWidth
+                size="small"
+                label="Address"
+                value={memberUpdateInput.memberAddres || ""}
+                onChange={memberAdressHandler}
+              />
+
+              {/* DESCRIPTION */}
+              <TextField
+                fullWidth
+                size="small"
+                label="Description"
+                multiline
+                rows={2}
+                value={memberUpdateInput.memberDesc || ""}
+                onChange={memberDescriptionHandler}
+              />
+            </Stack>
+
+            {/* FOOTER */}
+            <Stack
+              sx={{
+                px: 3,
+                py: 2,
+                borderTop: "1px solid #eee",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                gap: 1.2,
+                backgroundColor: "#fafafa",
+              }}
+            >
+              <Button
+                onClick={handleUpdateClose}
+                variant="outlined"
+                sx={{
+                  minWidth: "90px",
+                  height: "40px",
+                  borderRadius: "9px",
+                  textTransform: "none",
+                  fontWeight: 600,
+                  color: "#374151",
+                  borderColor: "#d1d5db",
+                }}
+              >
+                Cancel
+              </Button>
+
+              <Button
+                onClick={handleSubmitButton}
+                variant="contained"
+                startIcon={<Save size={18} />}
+                sx={{
+                  minWidth: "130px",
+                  height: "40px",
+                  borderRadius: "9px",
+                  textTransform: "none",
+                  fontWeight: 600,
+                  boxShadow: "none",
+                }}
+              >
+                Save changes
+              </Button>
             </Stack>
           </Stack>
         </Fade>

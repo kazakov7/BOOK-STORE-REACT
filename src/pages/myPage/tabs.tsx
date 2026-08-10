@@ -3,13 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import "../../css/myPage.css";
 import Container from "../../components/common/container";
 import { motion } from "framer-motion";
-
-const user = {
-  id: "1",
-  name: "Kevin",
-  avatar: "/img/kevin2.jpg",
-  email: "kevin@gmail.com",
-};
+import { useGlobals } from "../../hooks/useGlobal";
+import { serverApi } from "../../libs/enums/config";
 
 interface MyPageProps {
   handleLogoutRequest: () => void;
@@ -17,6 +12,7 @@ interface MyPageProps {
 export default function MyPageHeader(props: MyPageProps) {
   const { handleLogoutRequest } = props;
   const location = useLocation();
+  const { authMember } = useGlobals();
 
   return (
     <motion.div
@@ -32,12 +28,19 @@ export default function MyPageHeader(props: MyPageProps) {
       <Container>
         <div className="mypage-top">
           <div className="profile-info">
-            <Avatar className="profile-avatar" src={user.avatar}></Avatar>
+            <Avatar
+              className="profile-avatar"
+              src={
+                authMember?.memberImage
+                  ? `${serverApi}/${authMember.memberImage}`
+                  : "/img/default.png"
+              }
+            ></Avatar>
 
             <div className="profile-text">
-              <strong className="profile-name">{user.name}</strong>
+              <strong className="profile-name">{authMember?.memberNick}</strong>
 
-              <span className="profile-email">{user.email}</span>
+              <span className="profile-email">{authMember?.memberEmail}</span>
             </div>
           </div>
 

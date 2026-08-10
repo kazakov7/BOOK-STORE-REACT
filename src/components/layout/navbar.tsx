@@ -2,6 +2,7 @@ import "../../css/main.css";
 import { NavLink } from "react-router-dom";
 import { SearchIcon } from "lucide-react";
 import { useGlobals } from "../../hooks/useGlobal";
+import { serverApi } from "../../libs/enums/config";
 
 export default function Navbar(props: any) {
   const { cartItems, wishlistItems } = props;
@@ -77,8 +78,8 @@ export default function Navbar(props: any) {
             <NavLink to={"/profile"}>
               <img
                 src={
-                  authMember.memberImage
-                    ? authMember.memberImage
+                  authMember?.memberImage
+                    ? `${serverApi}/${authMember.memberImage}`
                     : "/img/default.png"
                 }
                 alt=""
