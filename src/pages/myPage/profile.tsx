@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import "../../css/myPage.css";
 import { useGlobals } from "../../hooks/useGlobal";
 import { serverApi } from "../../libs/enums/config";
+import { useNavigate } from "react-router-dom";
 
 interface AccountProps {
   setUpdateOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,6 +11,9 @@ interface AccountProps {
 export default function Account(props: AccountProps) {
   const { setUpdateOpen } = props;
   const { authMember } = useGlobals();
+  const navigate = useNavigate();
+
+  if (!authMember) navigate("/");
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
@@ -55,7 +59,11 @@ export default function Account(props: AccountProps) {
 
             <div className="info-content">
               <span>Email</span>
-              <strong>{authMember?.memberEmail}</strong>
+              <strong>
+                {authMember?.memberEmail
+                  ? authMember?.memberEmail
+                  : "no email info"}
+              </strong>
             </div>
           </div>
 

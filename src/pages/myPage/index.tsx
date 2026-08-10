@@ -1,7 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Tabs from "./tabs";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useGlobals } from "../../hooks/useGlobal";
 
 interface MyPageProps {
   handleLogoutRequest: () => void;
@@ -12,6 +13,10 @@ export default function MyPage(props: MyPageProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const { authMember } = useGlobals();
+  const navigate = useNavigate();
+
+  if (!authMember) navigate("/");
 
   return (
     <motion.div

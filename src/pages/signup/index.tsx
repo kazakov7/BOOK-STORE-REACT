@@ -35,13 +35,6 @@ export default function SignUp() {
 
   const handleSignupRequest = async () => {
     try {
-      console.log(
-        "inputs",
-        memberNick,
-        memberPassword,
-        memberPhone,
-        memberPhone,
-      );
       const fullFil =
         memberNick == "" && memberPassword == "" && memberPhone == "";
       if (fullFil) throw new Error(messages.error3);

@@ -58,8 +58,7 @@ export default function BestSellers(props: BestSellersProps) {
           <div className="section-bottom">
             <div className={"best-card-frame"}>
               {bestSellers.length !== 0 ? (
-                bestSellers.map((item: any) => {
-                  const book = item.book;
+                bestSellers.map((book: any) => {
                   if (!book) return null;
 
                   const imagePath = `${serverApi}/${book.images[0]}`;
@@ -106,7 +105,7 @@ export default function BestSellers(props: BestSellersProps) {
                           {book.author}
                         </div>
                         <div className="book-card__sold">
-                          🔥 <span>{item.totalSold} Sold</span>
+                          🔥 <span>{book.soldCount} Sold</span>
                         </div>
 
                         <div className="book-card__meta">

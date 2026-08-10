@@ -66,14 +66,12 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 
   const handleSubmitButton = async () => {
     try {
-      console.log(memberUpdateInput.memberDesc);
+      console.log(memberUpdateInput.memberEmail);
       if (!authMember) throw new Error(messages.error2);
 
       if (
         memberUpdateInput.memberNick === "" ||
-        memberUpdateInput.memberPhone === "" ||
-        memberUpdateInput.memberAddres === "" ||
-        memberUpdateInput.memberDesc === ""
+        memberUpdateInput.memberPhone === ""
       ) {
         throw new Error(messages.error3);
       }
@@ -182,7 +180,11 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 }}
               >
                 <img
-                  src={memberImage}
+                  src={
+                    memberUpdateInput.memberImage
+                      ? memberImage
+                      : "/img/default.png"
+                  }
                   alt="profile"
                   style={{
                     width: "76px",

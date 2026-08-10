@@ -69,6 +69,9 @@ class MemberService {
       if (input.memberImage) {
         formData.append("memberImage", input.memberImage);
       }
+      if (input.memberEmail) {
+        formData.append("memberEmail", input.memberEmail);
+      }
 
       const result = await axios.post(`${this.path}/user/update`, formData, {
         withCredentials: true,

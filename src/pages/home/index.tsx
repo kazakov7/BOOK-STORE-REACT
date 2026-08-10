@@ -47,7 +47,11 @@ export default function Home(props: HomePageProps) {
       });
     //best-sellers api
     product
-      .getBestSellers()
+      .getProducts({
+        page: 1,
+        limit: 5,
+        order: "soldCount",
+      })
       .then((data) => {
         console.log("data passed here", data);
         setBestSellers(data);
