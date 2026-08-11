@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGlobals } from "../../hooks/useGlobal";
 import type { T } from "../../libs/types/common";
 import { messages } from "../../libs/config";
@@ -12,15 +12,29 @@ import { serverApi } from "../../libs/enums/config";
 
 export const theme = createTheme();
 
-interface AuthenticationModalProps {
+interface UpdateUserModalProps {
   updateOpen: boolean;
   handleUpdateClose: () => void;
 }
 
-export default function AuthenticationModal(props: AuthenticationModalProps) {
+export default function UpdateUserModal(props: UpdateUserModalProps) {
   const { updateOpen, handleUpdateClose } = props;
 
   const { authMember, setAuthMember } = useGlobals();
+
+  useEffect(() => {
+    if (updateOpen && authMember) {
+      setMemberUpdateInput({
+        memberNick: authMember.memberNick,
+        memberPhone: authMember.memberPhone,
+        memberPassword: "",
+        memberAddres: authMember.memberAddres,
+        memberDesc: authMember.memberDesc,
+        memberImage: authMember.memberImage,
+        memberEmail: authMember.memberEmail,
+      });
+    }
+  }, [updateOpen, authMember]);
 
   const [memberUpdateInput, setMemberUpdateInput] = useState<MemberUpdateInput>(
     {
@@ -33,6 +47,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       memberEmail: authMember?.memberEmail,
     },
   );
+
   const [memberImage, setMemberImage] = useState<string>(
     authMember?.memberImage
       ? `${serverApi}/${authMember.memberImage}`
@@ -182,7 +197,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 <img
                   src={
                     memberUpdateInput.memberImage
-                      ? memberImage
+                      ? `${serverApi}/${memberUpdateInput.memberImage}`
                       : "/img/default.png"
                   }
                   alt="profile"

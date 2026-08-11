@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+.order-succed-page {
+  margin-top: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirm-card {
+  width: 828px;
+  height: 440px;
+  background: #ffffff;
+  border: 1px solid #eceef1;
+  border-radius: 20px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.check-circle {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #eef7f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.confirm-card h1 {
+  margin: 0 0 16px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #12151a;
+  letter-spacing: -0.02em;
+}
+
+.confirm-card p {
+  margin: 0 0 32px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #7c828d;
+  max-width: 480px;
+}
+
+.back-home-btn {
+  background: #12151a;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+
+.back-home-btn:hover {
+  background: #262b33;
+}
+
+.back-home-btn:focus-visible {
+  outline: 2px solid #4ade80;
+  outline-offset: 2px;
+}

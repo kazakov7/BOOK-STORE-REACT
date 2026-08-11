@@ -8,11 +8,12 @@ import {
   Plus,
   Trash2,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import type { CartItem } from "../../libs/types/search";
 import { serverApi } from "../../libs/enums/config";
 import EmptyCart from "../../components/common/empty-cart";
 import { motion } from "framer-motion";
+import { useGlobals } from "../../hooks/useGlobal";
 
 function CartItemRow({ book, onAdd, onDelete, onRemove }: any) {
   return (
@@ -56,7 +57,29 @@ function CartItemRow({ book, onAdd, onDelete, onRemove }: any) {
   );
 }
 
-function OrderSummary({ subtotal, tax, total }: any) {
+function OrderSummary({ subtotal, tax, total, address, phoneNumber }: any) {
+  const navigate = useNavigate();
+  const { authMember } = useGlobals();
+  const handleCheckout = () => {
+    if (!authMember) {
+      alert("Please, login first");
+      return;
+    }
+    if (!address.trim()) {
+      alert("Please enter your address");
+      return;
+    }
+
+    navigate("/payment", {
+      state: {
+        subtotal,
+        tax,
+        total,
+        address,
+        phoneNumber,
+      },
+    });
+  };
   return (
     <div className="summary-card">
       <h2>Order summary</h2>
@@ -87,8 +110,8 @@ function OrderSummary({ subtotal, tax, total }: any) {
         <span>${total.toFixed(2)}</span>
       </div>
 
-      <button className="checkout-btn">
-        Proceed to checkout
+      <button onClick={handleCheckout} className="checkout-btn">
+        Proceed to Payment
         <span className="icon-slot" />
       </button>
 
@@ -106,10 +129,15 @@ interface CartProps {
   onDelete: (item: CartItem) => void;
   onDeleteAll: () => void;
 }
+
 export default function CartPage(props: CartProps) {
+  const { authMember } = useGlobals();
+
   const { cartItems, onAdd, onDelete, onRemove } = props;
-  const [deliveryAddress, setDeliveryAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [deliveryAddress, setDeliveryAddress] = useState(
+    authMember?.memberAddres || "",
+  );
+  const [phoneNumber, setPhoneNumber] = useState(authMember?.memberPhone || "");
 
   const subtotal = cartItems.reduce((sum, b) => sum + b.price * b.quantity, 0);
   const tax = subtotal * 0.08;
@@ -118,6 +146,12 @@ export default function CartPage(props: CartProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  function handleSubmit() {
+    if (!deliveryAddress) {
+      alert("Phone number required");
+      return;
+    }
+  }
 
   return (
     <motion.div
@@ -139,33 +173,38 @@ export default function CartPage(props: CartProps) {
       <span className="items-count">{cartItems.length} items in your bag</span>
 
       <div className="cart-layout">
-        <div>
-          <div className="cart-table">
-            <div className="cart-header-row">
-              <span>BOOK</span>
-              <span>QUANTITY</span>
-              <span>PRICE</span>
-            </div>
-
-            {cartItems.length != 0 ? (
-              cartItems.map((book) => (
-                <CartItemRow
-                  key={book._id}
-                  book={book}
-                  onAdd={onAdd}
-                  onDelete={onDelete}
-                  onRemove={onRemove}
-                />
-              ))
-            ) : (
-              <EmptyCart />
-            )}
+        <div className="cart-table">
+          <div className="cart-header-row">
+            <span>BOOK</span>
+            <span>QUANTITY</span>
+            <span>PRICE</span>
           </div>
 
+          {cartItems.length != 0 ? (
+            cartItems.map((book) => (
+              <CartItemRow
+                key={book._id}
+                book={book}
+                onAdd={onAdd}
+                onDelete={onDelete}
+                onRemove={onRemove}
+              />
+            ))
+          ) : (
+            <EmptyCart />
+          )}
+        </div>
+
+        <div className="cart-page-rigth">
           <section className="delivery-info-card">
             <label className="card-label" htmlFor="deliveryAddress">
-              <LocateIcon />
-              Delivery address
+              <LocateIcon width={18} />
+              Delivery address{" "}
+              <span
+                style={{ color: "red", fontSize: "18px", marginTop: "2px" }}
+              >
+                *
+              </span>
             </label>
             <input
               id="deliveryAddress"
@@ -175,11 +214,8 @@ export default function CartPage(props: CartProps) {
               onChange={(e) => setDeliveryAddress(e.target.value)}
               className="oc-input"
             />
-          </section>
-
-          <section className="delivery-info-card">
-            <label className="card-label" htmlFor="phoneNumber">
-              <PhoneIcon />
+            <label className="card-label number" htmlFor="phoneNumber">
+              <PhoneIcon width={18} />
               Phone number
             </label>
             <input
@@ -191,8 +227,17 @@ export default function CartPage(props: CartProps) {
               className="oc-input"
             />
           </section>
+
+          {/* <section className="delivery-info-card"></section> */}
+          <OrderSummary
+            subtotal={subtotal}
+            tax={tax}
+            total={total}
+            address={deliveryAddress}
+            phoneNumber={phoneNumber ? phoneNumber : authMember?.memberPhone}
+            onClick={handleSubmit}
+          />
         </div>
-        <OrderSummary subtotal={subtotal} tax={tax} total={total} />
       </div>
     </motion.div>
   );

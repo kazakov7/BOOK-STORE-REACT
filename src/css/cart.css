@@ -12,7 +12,7 @@ body {
   width: 1300px;
   margin: 0 auto;
   padding: 48px 24px 96px;
-  margin-top: 73px;
+  margin-top: 30px;
 }
 
 /* ---- top ---- */
@@ -53,20 +53,19 @@ body {
 
 /* ---- layout ---- */
 .cart-page .cart-layout {
-  margin-top: 37px;
+  width: 1250px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 32px;
 }
 
 /* ---- cart table ---- */
 .cart-page .cart-table {
-  flex: 1;
+  width: 65%;
   border: 1px solid #eef0f4;
   border-radius: 16px;
   overflow: hidden;
-  min-height: 440px;
+  min-height: 540px;
   height: auto;
 }
 
@@ -120,7 +119,11 @@ body {
   color: #94a3b8;
   margin: 0;
 }
-
+.cart-page .cart-page-rigth {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 /* ---- quantity ---- */
 .cart-page .col-quantity {
   display: flex;
@@ -181,9 +184,7 @@ body {
   color: #dc2626;
 }
 .cart-page .delivery-info-card {
-  width: 830px;
   padding: 10px 20px;
-  margin: 20px 0;
   border: 1px solid #eef0f4;
   border-radius: 16px;
 }
@@ -191,11 +192,10 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 0 0 14px;
-  font-size: 13px;
-  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 600;
   color: #64748b;
-  text-transform: uppercase;
 }
 .cart-page .delivery-info-card input {
   width: 100%;
@@ -203,6 +203,9 @@ body {
   border: 1px solid #eef0f4;
   border-radius: 10px;
   font-size: 16px;
+}
+.cart-page .delivery-info-card .card-label.number {
+  margin-top: 10px;
 }
 /* ---- order summary ---- */
 .cart-page .summary-card {

@@ -17,7 +17,8 @@ import type { CartItem } from "../libs/types/search";
 import type { Book } from "../libs/types/product";
 
 import { useState } from "react";
-import AuthenticationModal from "../components/settings";
+import PaymentPage from "../pages/cart/payment";
+import UpdateUserModal from "../components/settings";
 
 interface AppProps {
   cartItems: CartItem[];
@@ -85,6 +86,7 @@ function AppRoutes(props: AppProps) {
             />
           }
         />
+        <Route path="/payment" element={<PaymentPage />} />
         <Route
           path="/wishlist"
           element={
@@ -131,7 +133,7 @@ function AppRoutes(props: AppProps) {
         </Route>
       </Routes>
 
-      <AuthenticationModal
+      <UpdateUserModal
         updateOpen={updateOpen}
         handleUpdateClose={handleUpdateClose}
       />
