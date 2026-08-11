@@ -23,8 +23,8 @@ export default function OrderSucced() {
           your inbox.
         </p>
 
-        <NavLink to={"/"}>
-          <button className="back-home-btn">Back to home</button>
+        <NavLink to={"/profile/orders"}>
+          <button className="back-home-btn">My orders</button>
         </NavLink>
       </div>
     </Container>

@@ -49,8 +49,8 @@ export default function UpdateUserModal(props: UpdateUserModalProps) {
   );
 
   const [memberImage, setMemberImage] = useState<string>(
-    authMember?.memberImage
-      ? `${serverApi}/${authMember.memberImage}`
+    memberUpdateInput?.memberImage
+      ? `${serverApi}/${memberUpdateInput.memberImage}`
       : "/icons/default.png",
   );
 
@@ -197,7 +197,7 @@ export default function UpdateUserModal(props: UpdateUserModalProps) {
                 <img
                   src={
                     memberUpdateInput.memberImage
-                      ? `${serverApi}/${memberUpdateInput.memberImage}`
+                      ? memberImage
                       : "/img/default.png"
                   }
                   alt="profile"

@@ -450,33 +450,39 @@ export default function Sidebar(props: SidebarProps) {
             </div>
           ))}
         </div>
-        <Pagination
-          className="pagination"
-          count={
-            allBooks.length !== 0 ? productSearch.page + 1 : productSearch.page
-          }
-          page={productSearch.page}
-          renderItem={(item) => (
-            <PaginationItem
-              {...item}
-              slots={{
-                previous: ArrowBackIcon,
-                next: ArrowForwardIcon,
-              }}
-              sx={{
-                color: "#555",
-                "&.Mui-selected": {
-                  backgroundColor: "#1d9bf0",
-                  color: "#fff",
-                },
-                "&:hover": {
-                  backgroundColor: "#0393f4",
-                },
-              }}
-            />
-          )}
-          onChange={paginationHandler}
-        />
+        {allBooks.length > 0 ? (
+          <Pagination
+            className="pagination"
+            count={
+              allBooks.length !== 0
+                ? productSearch.page + 1
+                : productSearch.page
+            }
+            page={productSearch.page}
+            renderItem={(item) => (
+              <PaginationItem
+                {...item}
+                slots={{
+                  previous: ArrowBackIcon,
+                  next: ArrowForwardIcon,
+                }}
+                sx={{
+                  color: "#555",
+                  "&.Mui-selected": {
+                    backgroundColor: "#1d9bf0",
+                    color: "#fff",
+                  },
+                  "&:hover": {
+                    backgroundColor: "#0393f4",
+                  },
+                }}
+              />
+            )}
+            onChange={paginationHandler}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

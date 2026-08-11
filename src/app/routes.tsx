@@ -19,6 +19,7 @@ import type { Book } from "../libs/types/product";
 import { useState } from "react";
 import PaymentPage from "../pages/cart/payment";
 import UpdateUserModal from "../components/settings";
+import OrderSucced from "../pages/cart/order-succes";
 
 interface AppProps {
   cartItems: CartItem[];
@@ -86,7 +87,11 @@ function AppRoutes(props: AppProps) {
             />
           }
         />
-        <Route path="/payment" element={<PaymentPage />} />
+        <Route
+          path="/payment"
+          element={<PaymentPage onDeleteAll={onDeleteAll} />}
+        />
+        <Route path="/order-succed" element={<OrderSucced />} />
         <Route
           path="/wishlist"
           element={

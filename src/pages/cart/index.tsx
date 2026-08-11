@@ -14,6 +14,7 @@ import { serverApi } from "../../libs/enums/config";
 import EmptyCart from "../../components/common/empty-cart";
 import { motion } from "framer-motion";
 import { useGlobals } from "../../hooks/useGlobal";
+import { messages } from "../../libs/config";
 
 function CartItemRow({ book, onAdd, onDelete, onRemove }: any) {
   return (
@@ -26,6 +27,12 @@ function CartItemRow({ book, onAdd, onDelete, onRemove }: any) {
           <p className="book-author">{book.author}</p>
 
           <p className="book-format">{book.language}</p>
+          <p
+            className="book-format"
+            style={{ color: "black", fontSize: "15px" }}
+          >
+            ${book.price}
+          </p>
         </div>
       </div>
 
@@ -57,28 +64,38 @@ function CartItemRow({ book, onAdd, onDelete, onRemove }: any) {
   );
 }
 
-function OrderSummary({ subtotal, tax, total, address, phoneNumber }: any) {
+function OrderSummary({
+  subtotal,
+  deliveryFee,
+  total,
+  address,
+  phoneNumber,
+  cartItems,
+}: any) {
   const navigate = useNavigate();
   const { authMember } = useGlobals();
-  const handleCheckout = () => {
-    if (!authMember) {
-      alert("Please, login first");
-      return;
-    }
-    if (!address.trim()) {
-      alert("Please enter your address");
-      return;
-    }
 
-    navigate("/payment", {
-      state: {
-        subtotal,
-        tax,
-        total,
-        address,
-        phoneNumber,
-      },
-    });
+  const handleCheckout = async () => {
+    try {
+      if (cartItems.length === 0)
+        throw new Error("Cart is empty. Please add a product.");
+      if (!authMember) throw new Error(messages.error2);
+      if (!address.trim()) throw new Error("Please enter your address");
+
+      navigate("/payment", {
+        state: {
+          subtotal,
+          deliveryFee,
+          total,
+          address,
+          phoneNumber,
+          cartItems,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+      alert(err);
+    }
   };
   return (
     <div className="summary-card">
@@ -95,12 +112,8 @@ function OrderSummary({ subtotal, tax, total, address, phoneNumber }: any) {
         <span>${subtotal.toFixed(2)}</span>
       </div>
       <div className="summary-line">
-        <span>Shipping</span>
-        <span>Free</span>
-      </div>
-      <div className="summary-line">
-        <span>Tax (8%)</span>
-        <span>${tax.toFixed(2)}</span>
+        <span>DeliveryFee</span>
+        <span>${deliveryFee}</span>
       </div>
 
       <div className="summary-divider" />
@@ -139,9 +152,9 @@ export default function CartPage(props: CartProps) {
   );
   const [phoneNumber, setPhoneNumber] = useState(authMember?.memberPhone || "");
 
-  const subtotal = cartItems.reduce((sum, b) => sum + b.price * b.quantity, 0);
-  const tax = subtotal * 0.08;
-  const total = subtotal + tax;
+  const itemPrice = cartItems.reduce((sum, b) => sum + b.price * b.quantity, 0);
+  const deliveryFee = itemPrice < 100 ? 5 : 0;
+  const totalPrice = itemPrice + deliveryFee;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -230,12 +243,13 @@ export default function CartPage(props: CartProps) {
 
           {/* <section className="delivery-info-card"></section> */}
           <OrderSummary
-            subtotal={subtotal}
-            tax={tax}
-            total={total}
+            subtotal={itemPrice}
+            deliveryFee={deliveryFee}
+            total={totalPrice}
             address={deliveryAddress}
             phoneNumber={phoneNumber ? phoneNumber : authMember?.memberPhone}
             onClick={handleSubmit}
+            cartItems={cartItems}
           />
         </div>
       </div>

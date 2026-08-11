@@ -1,9 +1,17 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Button from "../../components/common/univ-button";
 import "../../css/payment.css";
+import type { CreateOrderInput } from "../../libs/types/order";
+import OrderService from "../../service/Order.service";
 
-function OrderSummary({ subtotal, tax, total, address, phoneNumber }: any) {
+function OrderSummary({
+  subtotal,
+  deliveryFee,
+  total,
+  address,
+  phoneNumber,
+}: any) {
   return (
     <div className="summary-card">
       <h2>Order summary</h2>
@@ -14,12 +22,9 @@ function OrderSummary({ subtotal, tax, total, address, phoneNumber }: any) {
       </div>
       <div className="summary-line">
         <span>Shipping</span>
-        <span>Free</span>
+        <span>${deliveryFee}</span>
       </div>
-      <div className="summary-line">
-        <span>Tax (8%)</span>
-        <span>${tax.toFixed(2)}</span>
-      </div>
+
       <div className="summary-line">
         <span>Address</span>
         <span>{address}</span>
@@ -39,8 +44,28 @@ function OrderSummary({ subtotal, tax, total, address, phoneNumber }: any) {
   );
 }
 
-export default function PaymentPage() {
+export default function PaymentPage({ onDeleteAll }: any) {
   const { state } = useLocation();
+  const navigate = useNavigate();
+
+  const handlePayment = async () => {
+    const payStatus = true;
+    if (payStatus) {
+      const orderInput: CreateOrderInput = {
+        deliveryAddress: state.address,
+        phoneNumber: state.phoneNumber,
+        items: state.cartItems,
+      };
+
+      const order = new OrderService();
+      await order.createOrder(orderInput);
+
+      navigate("/order-succed");
+      onDeleteAll();
+    } else {
+      alert("payment failed");
+    }
+  };
   return (
     <div className="payment-page">
       <div>
@@ -99,9 +124,11 @@ export default function PaymentPage() {
                 Back
               </Button>
             </NavLink>
-            <NavLink to={"/order-succed"} className={"payment-btns"}>
-              <Button width="100%">Payment</Button>
-            </NavLink>
+            <div className={"payment-btns"}>
+              <Button width="100%" onClick={handlePayment}>
+                Payment
+              </Button>
+            </div>
           </div>
 
           <div className="actions"></div>
@@ -109,7 +136,7 @@ export default function PaymentPage() {
       </div>
       <OrderSummary
         subtotal={state.subtotal}
-        tax={state.tax}
+        deliveryFee={state.deliveryFee}
         total={state.total}
         address={state.address}
         phoneNumber={state.phoneNumber}
