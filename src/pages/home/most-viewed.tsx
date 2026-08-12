@@ -104,7 +104,7 @@ export default function MostViewed(props: MostViewed) {
                             style={{ fontSize: "20px" }}
                           />
                           <span className="book-card__rating-value">
-                            {book.averageRating}
+                            {book.averageRating?.toFixed(1)}
                           </span>
                         </div>
 

@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthLayout from "../../components/layout/auth-layout";
 import "../../css/auth.css";
-import { LockKeyhole, UserIcon } from "lucide-react";
+import { Eye, LockKeyhole, UserIcon } from "lucide-react";
 import { useState } from "react";
 import type { T } from "../../libs/types/common";
 import { messages } from "../../libs/config";
@@ -13,6 +13,7 @@ export default function Login() {
   const [memberPassword, setMemberPassword] = useState<string>("");
   const navigate = useNavigate();
   const { setAuthMember } = useGlobals();
+  const [showPassword, setShowPassword] = useState(false);
 
   /** HANDLERS **/
   const handleUsername = (e: T) => {
@@ -67,12 +68,18 @@ export default function Login() {
             <div className="input-with-icon">
               <LockKeyhole color="#3b82f6" />
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 onChange={handlePassword}
               />
-              <button type="button" className="eye-btn">
-                <span className="icon-slot" />
+              <button
+                type="button"
+                className="eye-btn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                <span>
+                  <Eye color="#3b82f6" />
+                </span>
               </button>
             </div>
           </div>

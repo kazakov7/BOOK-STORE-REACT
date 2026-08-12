@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthLayout from "../../components/layout/auth-layout";
 import "../../css/auth.css";
-import { LockKeyhole, Mail, Phone, User } from "lucide-react";
+import { Eye, LockKeyhole, Mail, Phone, User } from "lucide-react";
 import { useGlobals } from "../../hooks/useGlobal";
 import { useState } from "react";
 import type { T } from "../../libs/types/common";
@@ -15,6 +15,7 @@ export default function SignUp() {
   const [memberPassword, setMemberPassword] = useState<string>("");
   const [memberEmail, setMemberEmail] = useState<string>("");
   const { setAuthMember } = useGlobals();
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   /** HANDLERS **/
@@ -36,8 +37,12 @@ export default function SignUp() {
   const handleSignupRequest = async () => {
     try {
       const fullFil =
-        memberNick == "" && memberPassword == "" && memberPhone == "";
+        memberNick == "" || memberPassword == "" || memberPhone == "";
       if (fullFil) throw new Error(messages.error3);
+      if (memberNick.length < 5)
+        throw new Error("Username must be at least 4 characters long.");
+      if (memberPassword.length < 5)
+        throw new Error("Password must be at least 4 characters long.");
       const signupInput: MemberInput = {
         memberNick: memberNick,
         memberPhone: memberPhone,
@@ -51,6 +56,7 @@ export default function SignUp() {
       navigate("/");
     } catch (err) {
       console.log(err);
+      alert(err);
     }
   };
 
@@ -104,11 +110,20 @@ export default function SignUp() {
             <div className="input-with-icon">
               <LockKeyhole color="#3b82f6" />
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Create a password"
                 onChange={handlePassword}
                 required
               />
+              <button
+                type="button"
+                className="eye-btn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                <span>
+                  <Eye color="#3b82f6" />
+                </span>
+              </button>
             </div>
 
             <p className="hint-text">

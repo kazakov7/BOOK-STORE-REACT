@@ -118,7 +118,7 @@ export default function BestSellers(props: BestSellersProps) {
                               style={{ fontSize: "20px" }}
                             />
                             <span className="book-card__rating-value">
-                              {book.averageRating}
+                              {book.averageRating?.toFixed(1)}
                             </span>
                           </div>
                         </div>

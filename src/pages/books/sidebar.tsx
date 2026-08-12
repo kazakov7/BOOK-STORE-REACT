@@ -24,6 +24,8 @@ import Rating from "@mui/material/Rating";
 import { Pagination } from "@mui/material";
 import PaginationItem from "@mui/material/PaginationItem";
 import type { CartItem } from "../../libs/types/search";
+import EmptyBooks from "../../components/common/empty-books";
+import EmptyCart from "../../components/common/empty-cart";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setBooks: (data: Book[]) => dispatch(setBooks(data)),
@@ -400,9 +402,9 @@ export default function Sidebar(props: SidebarProps) {
                       style={{ fontSize: "20px" }}
                     />
                     <span className="book-card__rating-value">
-                      {book.averageRating}
+                      {book.averageRating?.toFixed(1)}
                     </span>
-                    <strong>(2300)</strong>
+                    <strong>({book.ratingsCount})</strong>
                   </div>
                 </div>
                 <div className="book-card__price">
@@ -481,7 +483,7 @@ export default function Sidebar(props: SidebarProps) {
             onChange={paginationHandler}
           />
         ) : (
-          ""
+          <EmptyCart />
         )}
       </div>
     </>

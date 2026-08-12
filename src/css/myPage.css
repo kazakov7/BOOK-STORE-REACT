@@ -392,6 +392,7 @@
 .order-books .book-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 22px;
   border-top: 1px solid #edf0f5;
   padding: 18px 0;

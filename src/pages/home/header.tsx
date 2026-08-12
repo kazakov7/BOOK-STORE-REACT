@@ -2,7 +2,9 @@ import { NavLink } from "react-router-dom";
 import "../../css/home.css";
 import { HashLink } from "react-router-hash-link";
 import { motion } from "framer-motion";
+import { useGlobals } from "../../hooks/useGlobal";
 export default function Header() {
+  const { authMember } = useGlobals();
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
@@ -35,9 +37,15 @@ export default function Header() {
                 <span>→</span>
               </button>
             </NavLink>
-            <HashLink smooth to="/#best-sellers">
-              <button className="btn-secondary">Bestsellers</button>
-            </HashLink>
+            {authMember ? (
+              <HashLink smooth to="/#best-sellers">
+                <button className="btn-secondary">Bestsellers</button>
+              </HashLink>
+            ) : (
+              <NavLink to="/signup">
+                <button className="btn-secondary">Sign Up</button>
+              </NavLink>
+            )}
           </div>
 
           <div className="content-stats">

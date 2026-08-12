@@ -106,7 +106,7 @@ export default function NewArriwals(props: NewArriwalsProps) {
                             style={{ fontSize: "20px" }}
                           />
                           <span className="book-card__rating-value">
-                            {book.averageRating}
+                            {book.averageRating?.toFixed(1)}
                           </span>
                         </div>
                         <div className="book-card__meta">

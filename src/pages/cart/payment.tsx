@@ -49,6 +49,7 @@ export default function PaymentPage({ onDeleteAll }: any) {
   const navigate = useNavigate();
 
   const handlePayment = async () => {
+    // payment logic
     const payStatus = true;
     if (payStatus) {
       const orderInput: CreateOrderInput = {
