@@ -51,18 +51,5 @@ class OrderService {
       throw err;
     }
   }
-  // public async updateOrder(input: OrderUpdateInput): Promise<Order> {
-  //   try {
-  //     const url = `${this.path}/order/update`;
-
-  //     const result = await axios.post(url, input, { withCredentials: true });
-  //     console.log("updateOrder:", result);
-
-  //     return result.data;
-  //   } catch (err) {
-  //     console.log("Error. updateOrder:", err);
-  //     throw err;
-  //   }
-  // }
 }
 export default OrderService;

@@ -4,6 +4,7 @@ import Button from "../../components/common/univ-button";
 import "../../css/payment.css";
 import type { CreateOrderInput } from "../../libs/types/order";
 import OrderService from "../../service/Order.service";
+import { toast } from "react-toastify";
 
 function OrderSummary({
   subtotal,
@@ -64,7 +65,7 @@ export default function PaymentPage({ onDeleteAll }: any) {
       navigate("/order-succed");
       onDeleteAll();
     } else {
-      alert("payment failed");
+      toast.error("Payment failed");
     }
   };
   return (

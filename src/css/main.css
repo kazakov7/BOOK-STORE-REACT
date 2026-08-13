@@ -22,7 +22,7 @@ a {
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  z-index: 100000;
+  z-index: 999;
   background-color: white;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   top: 0;
@@ -311,6 +311,7 @@ a {
 
   cursor: pointer;
   transition: all 0.2s ease;
+  z-index: 99;
 }
 .book-card__like-btn.liked {
   background: #e63946;

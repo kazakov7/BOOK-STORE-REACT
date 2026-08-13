@@ -8,6 +8,7 @@ import type { T } from "../../libs/types/common";
 import type { MemberInput } from "../../libs/types/member";
 import { messages } from "../../libs/config";
 import MemberService from "../../service/MemberService";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [memberNick, setMemberNick] = useState<string>("");
@@ -56,7 +57,11 @@ export default function SignUp() {
       navigate("/");
     } catch (err) {
       console.log(err);
-      alert(err);
+
+      toast.error(
+        // @ts-ignore
+        err.response?.data?.message || err.message || "Something went wrong",
+      );
     }
   };
 

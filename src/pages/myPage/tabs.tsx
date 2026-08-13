@@ -38,7 +38,20 @@ export default function MyPageHeader(props: MyPageProps) {
             ></Avatar>
 
             <div className="profile-text">
-              <strong className="profile-name">{authMember?.memberNick}</strong>
+              <strong className="profile-name">
+                {authMember?.memberNick}
+                {authMember?.memberType === "ADMIN" ? (
+                  <span className="admin-badge">
+                    <span className="admin-dot"></span>
+                    Admin
+                  </span>
+                ) : (
+                  <span className="admin-badge">
+                    <span className="admin-dot"></span>
+                    User
+                  </span>
+                )}
+              </strong>
 
               <span className="profile-email">{authMember?.memberEmail}</span>
             </div>

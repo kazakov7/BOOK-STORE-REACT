@@ -20,7 +20,8 @@ import { useState } from "react";
 import PaymentPage from "../pages/cart/payment";
 import UpdateUserModal from "../components/settings";
 import OrderSucced from "../pages/cart/order-succes";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface AppProps {
   cartItems: CartItem[];
   onAdd: (item: CartItem) => void;
@@ -141,6 +142,17 @@ function AppRoutes(props: AppProps) {
       <UpdateUserModal
         updateOpen={updateOpen}
         handleUpdateClose={handleUpdateClose}
+      />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        toastStyle={{
+          position: "fixed",
+          zIndex: "99999 !important",
+        }}
       />
     </>
   );

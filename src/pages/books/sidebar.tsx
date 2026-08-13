@@ -408,13 +408,13 @@ export default function Sidebar(props: SidebarProps) {
                   </div>
                 </div>
                 <div className="book-card__price">
-                  ${book.price} <span>{book.price}</span>
+                  ${book.price} <span>{book.price * 1.5}</span>
                 </div>
               </div>
 
               <Button
                 height="35px"
-                width="90%"
+                width="100%"
                 className="add-btn"
                 onClick={(e) => {
                   onAdd({

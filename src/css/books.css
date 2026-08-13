@@ -57,7 +57,7 @@
 
 .sidebar-frame {
   width: 260px;
-  height: 1700px;
+
   margin-left: 200px;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@
   align-items: flex-start;
   float: left;
   position: sticky;
-  top: 20px;
+  top: 100px;
 }
 .sidebar-frame .search-box {
   position: relative;
@@ -569,10 +569,14 @@
 
   cursor: pointer;
   transition: all 0.2s ease;
+  z-index: 100;
 }
 .main-frame .book-card__like-btn.liked {
   background: #e63946;
   border-color: #e63946;
+}
+.main-frame .book-card__like-btn:hover {
+  background-color: red;
 }
 .main-frame .book-card .add-btn {
   font-size: 18px;

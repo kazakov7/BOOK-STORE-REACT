@@ -7,6 +7,7 @@ import useWishlist from "./hooks/useWishlist";
 import { useGlobals } from "./hooks/useGlobal";
 
 import MemberService from "./service/MemberService";
+import { toast } from "react-toastify";
 
 function App() {
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
@@ -16,15 +17,42 @@ function App() {
 
   // HANDLERS
 
-  const handleLogoutRequest = async () => {
-    try {
-      const member = new MemberService();
-      await member.logout();
+  const handleLogoutRequest = () => {
+    toast.info(
+      <div>
+        <p>Are you sure you want to logout?</p>
 
-      setAuthMember(null);
-    } catch (err) {
-      console.log(err);
-    }
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button
+            onClick={async () => {
+              try {
+                const member = new MemberService();
+                await member.logout();
+
+                setAuthMember(null);
+
+                toast.dismiss();
+                toast.success("You have been logged out successfully.");
+              } catch (err) {
+                console.log(err);
+
+                toast.dismiss();
+                toast.error("Logout failed. Please try again.");
+              }
+            }}
+          >
+            Yes
+          </button>
+
+          <button onClick={() => toast.dismiss()}>Cancel</button>
+        </div>
+      </div>,
+      {
+        autoClose: false,
+        closeOnClick: false,
+        closeButton: false,
+      },
+    );
   };
 
   const hideLayout =

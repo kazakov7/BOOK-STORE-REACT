@@ -15,6 +15,7 @@ import EmptyCart from "../../components/common/empty-cart";
 import { motion } from "framer-motion";
 import { useGlobals } from "../../hooks/useGlobal";
 import { messages } from "../../libs/config";
+import { toast } from "react-toastify";
 
 function CartItemRow({ book, onAdd, onDelete, onRemove }: any) {
   return (
@@ -94,7 +95,10 @@ function OrderSummary({
       });
     } catch (err) {
       console.log(err);
-      alert(err);
+      toast.error(
+        // @ts-ignore
+        err.response?.data?.message || err.message || "Something went wrong",
+      );
     }
   };
   return (
@@ -161,7 +165,10 @@ export default function CartPage(props: CartProps) {
   }, []);
   function handleSubmit() {
     if (!deliveryAddress) {
-      alert("Phone number required");
+      toast.error(
+        // @ts-ignore
+        err.response?.data?.message || err.message || "Something went wrong",
+      );
       return;
     }
   }
@@ -241,7 +248,6 @@ export default function CartPage(props: CartProps) {
             />
           </section>
 
-          {/* <section className="delivery-info-card"></section> */}
           <OrderSummary
             subtotal={itemPrice}
             deliveryFee={deliveryFee}

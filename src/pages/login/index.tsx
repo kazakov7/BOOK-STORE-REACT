@@ -8,6 +8,7 @@ import { messages } from "../../libs/config";
 import type { MemberLoginInput } from "../../libs/types/member";
 import MemberService from "../../service/MemberService";
 import { useGlobals } from "../../hooks/useGlobal";
+import { toast } from "react-toastify";
 export default function Login() {
   const [identifier, setMemberNick] = useState<string>("");
   const [memberPassword, setMemberPassword] = useState<string>("");
@@ -39,6 +40,10 @@ export default function Login() {
       navigate("/");
     } catch (err) {
       console.log(err);
+      toast.error(
+        // @ts-ignore
+        err.response?.data?.message || err.message || "Something went wrong",
+      );
     }
   };
 

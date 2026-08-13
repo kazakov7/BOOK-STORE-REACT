@@ -9,6 +9,7 @@ import MemberService from "../../service/MemberService";
 import type { MemberUpdateInput } from "../../libs/types/member";
 import { createTheme } from "@mui/material/styles";
 import { serverApi } from "../../libs/enums/config";
+import { toast } from "react-toastify";
 
 export const theme = createTheme();
 
@@ -100,6 +101,10 @@ export default function UpdateUserModal(props: UpdateUserModalProps) {
       await console.log("result", result);
     } catch (err) {
       console.log(err);
+      toast.error(
+        // @ts-ignore
+        err.response?.data?.message || err.message || "Something went wrong",
+      );
     }
   };
 
