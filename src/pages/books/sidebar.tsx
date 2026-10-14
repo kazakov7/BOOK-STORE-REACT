@@ -24,7 +24,6 @@ import Rating from "@mui/material/Rating";
 import { Pagination } from "@mui/material";
 import PaginationItem from "@mui/material/PaginationItem";
 import type { CartItem } from "../../libs/types/search";
-import EmptyBooks from "../../components/common/empty-books";
 import EmptyCart from "../../components/common/empty-cart";
 
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -127,7 +126,7 @@ export default function Sidebar(props: SidebarProps) {
     history(`/book/${id}`);
   };
 
-  const paginationHandler = (e: ChangeEvent<any>, value: number) => {
+  const paginationHandler = (_e: ChangeEvent<any>, value: number) => {
     productSearch.page = value;
     setProductSearch({ ...productSearch });
   };

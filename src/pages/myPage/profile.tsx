@@ -54,19 +54,6 @@ export default function Account(props: AccountProps) {
             </div>
           </div>
 
-          <div className="info-item">
-            <img src="/icons/email.jpg" alt="" className="info-icon" />
-
-            <div className="info-content">
-              <span>Email</span>
-              <strong>
-                {authMember?.memberEmail
-                  ? authMember?.memberEmail
-                  : "no email info"}
-              </strong>
-            </div>
-          </div>
-
           <div className="info-item border-none">
             <img src="/icons/phone-number.png" alt="" className="info-icon" />
 

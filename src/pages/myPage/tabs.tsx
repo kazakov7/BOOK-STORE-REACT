@@ -53,7 +53,7 @@ export default function MyPageHeader(props: MyPageProps) {
                 )}
               </strong>
 
-              <span className="profile-email">{authMember?.memberEmail}</span>
+              <span className="profile-email">{authMember?.memberPhone}</span>
             </div>
           </div>
 

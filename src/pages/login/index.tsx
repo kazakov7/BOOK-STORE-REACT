@@ -10,7 +10,7 @@ import MemberService from "../../service/MemberService";
 import { useGlobals } from "../../hooks/useGlobal";
 import { toast } from "react-toastify";
 export default function Login() {
-  const [identifier, setMemberNick] = useState<string>("");
+  const [memberNick, setMemberNick] = useState<string>("");
   const [memberPassword, setMemberPassword] = useState<string>("");
   const navigate = useNavigate();
   const { setAuthMember } = useGlobals();
@@ -26,11 +26,11 @@ export default function Login() {
 
   const handleLoginRequest = async () => {
     try {
-      console.log("inputs", identifier, memberPassword);
-      const fullFil = identifier == "" && memberPassword == "";
+      console.log("inputs", memberNick, memberPassword);
+      const fullFil = memberNick == "" || memberPassword == "";
       if (fullFil) throw new Error(messages.error3);
       const loginInput: MemberLoginInput = {
-        identifier: identifier,
+        memberNick: memberNick,
         memberPassword: memberPassword,
       };
       const member = new MemberService();
@@ -55,12 +55,12 @@ export default function Login() {
 
         <form>
           <div className="field">
-            <label>Email or Username</label>
+            <label>Username</label>
             <div className="input-with-icon">
               <UserIcon color="#3b82f6" />
               <input
                 type="text"
-                placeholder="Email or username"
+                placeholder="Username"
                 onChange={handleUsername}
               />
             </div>

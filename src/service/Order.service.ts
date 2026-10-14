@@ -1,7 +1,7 @@
 import axios from "axios";
 import { serverApi } from "../libs/enums/config";
 import type { Order } from "../libs/enums/order.enums";
-import type { CreateOrderInput, OrderInquiry } from "../libs/types/order";
+import type { CreateOrderInput } from "../libs/types/order";
 
 class OrderService {
   private readonly path: string;

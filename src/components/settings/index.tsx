@@ -32,7 +32,6 @@ export default function UpdateUserModal(props: UpdateUserModalProps) {
         memberAddres: authMember.memberAddres,
         memberDesc: authMember.memberDesc,
         memberImage: authMember.memberImage,
-        memberEmail: authMember.memberEmail,
       });
     }
   }, [updateOpen, authMember]);
@@ -45,7 +44,6 @@ export default function UpdateUserModal(props: UpdateUserModalProps) {
       memberAddres: authMember?.memberAddres,
       memberDesc: authMember?.memberDesc,
       memberImage: authMember?.memberImage,
-      memberEmail: authMember?.memberEmail,
     },
   );
 
@@ -70,10 +68,6 @@ export default function UpdateUserModal(props: UpdateUserModalProps) {
     memberUpdateInput.memberAddres = e.target.value;
     setMemberUpdateInput({ ...memberUpdateInput });
   };
-  const memberEmailHandler = (e: T) => {
-    memberUpdateInput.memberEmail = e.target.value;
-    setMemberUpdateInput({ ...memberUpdateInput });
-  };
 
   const memberDescriptionHandler = (e: T) => {
     memberUpdateInput.memberDesc = e.target.value;
@@ -82,7 +76,6 @@ export default function UpdateUserModal(props: UpdateUserModalProps) {
 
   const handleSubmitButton = async () => {
     try {
-      console.log(memberUpdateInput.memberEmail);
       if (!authMember) throw new Error(messages.error2);
 
       if (
@@ -260,30 +253,14 @@ export default function UpdateUserModal(props: UpdateUserModalProps) {
                 onChange={memberNickHandler}
               />
 
-              {/* PHONE + EMAIL */}
-              <Stack
-                sx={{
-                  flexDirection: { xs: "column", sm: "row" },
-                  gap: 2,
-                }}
-              >
-                <TextField
-                  fullWidth
-                  size="small"
-                  label="Phone number"
-                  value={memberUpdateInput.memberPhone || ""}
-                  onChange={memberPhoneHandler}
-                />
-
-                <TextField
-                  fullWidth
-                  size="small"
-                  type="email"
-                  label="Email"
-                  value={memberUpdateInput.memberEmail || ""}
-                  onChange={memberEmailHandler}
-                />
-              </Stack>
+              {/* PHONE */}
+              <TextField
+                fullWidth
+                size="small"
+                label="Phone number"
+                value={memberUpdateInput.memberPhone || ""}
+                onChange={memberPhoneHandler}
+              />
 
               {/* ADDRESS */}
               <TextField

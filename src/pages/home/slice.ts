@@ -5,6 +5,7 @@ const initialState: HomePageState = {
   mostViewed: [],
   bestSellers: [],
   newArriwals: [],
+  chosenProduct: null,
 };
 
 const homePageSlice = createSlice({

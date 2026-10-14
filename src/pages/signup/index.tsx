@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthLayout from "../../components/layout/auth-layout";
 import "../../css/auth.css";
-import { Eye, LockKeyhole, Mail, Phone, User } from "lucide-react";
+import { Eye, LockKeyhole, Phone, User } from "lucide-react";
 import { useGlobals } from "../../hooks/useGlobal";
 import { useState } from "react";
 import type { T } from "../../libs/types/common";
@@ -14,7 +14,6 @@ export default function SignUp() {
   const [memberNick, setMemberNick] = useState<string>("");
   const [memberPhone, setMemberPhone] = useState<string>("");
   const [memberPassword, setMemberPassword] = useState<string>("");
-  const [memberEmail, setMemberEmail] = useState<string>("");
   const { setAuthMember } = useGlobals();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -27,9 +26,6 @@ export default function SignUp() {
   const handlePhone = (e: T) => {
     setMemberPhone(e.target.value);
   };
-  const handleEmail = (e: T) => {
-    setMemberEmail(e.target.value);
-  };
 
   const handlePassword = (e: T) => {
     setMemberPassword(e.target.value);
@@ -40,15 +36,14 @@ export default function SignUp() {
       const fullFil =
         memberNick == "" || memberPassword == "" || memberPhone == "";
       if (fullFil) throw new Error(messages.error3);
-      if (memberNick.length < 5)
+      if (memberNick.length < 4)
         throw new Error("Username must be at least 4 characters long.");
-      if (memberPassword.length < 5)
+      if (memberPassword.length < 4)
         throw new Error("Password must be at least 4 characters long.");
       const signupInput: MemberInput = {
         memberNick: memberNick,
         memberPhone: memberPhone,
         memberPassword: memberPassword,
-        memberEmail: memberEmail,
       };
       const member = new MemberService();
       const result = await member.signup(signupInput);
@@ -80,19 +75,6 @@ export default function SignUp() {
                 type="text"
                 placeholder="Jane Reader"
                 onChange={handleUsername}
-                required
-              />
-            </div>
-          </div>
-
-          <div className="field">
-            <label>Email</label>
-            <div className="input-with-icon">
-              <Mail color="#3b82f6" />
-              <input
-                type="email"
-                placeholder="you@email.com"
-                onChange={handleEmail}
                 required
               />
             </div>
