@@ -2,10 +2,7 @@ import "../../css/cart.css";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 export default function EmptyCart() {
   return (
-    <div
-      className="empty-cart"
-      style={{ border: "none", marginLeft: "50px", marginTop: "100px" }}
-    >
+    <div className="empty-cart catalog-empty">
       <div className="empty-cart-icon">
         <MenuBookOutlinedIcon />
       </div>

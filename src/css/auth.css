@@ -220,6 +220,58 @@
   margin-top: 28px;
 }
 
+@media (max-width: 760px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+    min-height: 100dvh;
+  }
+
+  .auth-brand {
+    min-height: 92px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .brand-row img {
+    width: 108px;
+    display: block;
+  }
+
+  .quote-block,
+  .auth-brand .copyright {
+    display: none;
+  }
+
+  .auth-form-panel {
+    align-items: flex-start;
+    padding: 40px 20px 56px;
+  }
+
+  .auth-card {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .auth-card h1 {
+    font-size: 27px;
+  }
+
+  .subtitle {
+    margin-bottom: 26px;
+  }
+
+  .auth-page .input-with-icon {
+    min-height: 52px;
+    padding: 5px 16px;
+  }
+
+  .primary-btn {
+    min-height: 48px;
+    font-size: 16px;
+  }
+}
+
 .switch-note a {
   color: #3b82f6;
   font-weight: 600;

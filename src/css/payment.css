@@ -228,3 +228,74 @@ body {
   color: #0f172a;
   padding-top: 4px;
 }
+
+@media (max-width: 900px) {
+  .payment-page {
+    width: 100%;
+    gap: 28px;
+  }
+
+  .payment-card {
+    width: min(100%, 620px);
+  }
+}
+
+@media (max-width: 760px) {
+  .payment-page {
+    margin-top: 64px;
+    padding: 24px 16px 64px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .payment-page > div:first-child {
+    width: 100%;
+  }
+
+  .payment-page .continue-link {
+    margin-bottom: 18px;
+  }
+
+  .payment-page strong {
+    font-size: 32px;
+  }
+
+  .payment-card {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+  }
+
+  .card-details-box {
+    padding: 20px;
+  }
+
+  .field-row {
+    gap: 12px;
+  }
+
+  .demo-note {
+    gap: 10px;
+  }
+
+  .payment-btns {
+    width: 50%;
+  }
+
+  .payment-page .summary-card {
+    width: 100%;
+    height: auto;
+    margin-top: 28px;
+    padding: 22px;
+  }
+
+  .payment-page .summary-line {
+    gap: 18px;
+  }
+
+  .payment-page .summary-line span:last-child {
+    max-width: 58%;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+}

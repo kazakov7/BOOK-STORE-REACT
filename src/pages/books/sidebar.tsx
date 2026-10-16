@@ -1,4 +1,4 @@
-import { Heart, Search } from "lucide-react";
+import { Heart, Search, SlidersHorizontal, X } from "lucide-react";
 import Button from "../../components/common/univ-button";
 import { FiSearch } from "react-icons/fi";
 
@@ -54,6 +54,7 @@ export default function Sidebar(props: SidebarProps) {
     search: "",
   });
   const [searchText, setSearchText] = useState<string>("");
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const history = useNavigate();
   const [searchParams] = useSearchParams();
@@ -132,7 +133,17 @@ export default function Sidebar(props: SidebarProps) {
   };
   return (
     <>
-      <div className="sidebar-frame">
+      <div className={`sidebar-frame ${filtersOpen ? "is-open" : ""}`}>
+        <div className="mobile-filter-header">
+          <strong>Filters</strong>
+          <button
+            type="button"
+            aria-label="Close filters"
+            onClick={() => setFiltersOpen(false)}
+          >
+            <X size={22} />
+          </button>
+        </div>
         <div className="search-box">
           <strong className="title">SEARCH</strong>
           <input
@@ -325,8 +336,22 @@ export default function Sidebar(props: SidebarProps) {
           Clear filter
         </Button>
       </div>
+      <button
+        type="button"
+        aria-label="Close filters"
+        className={`filter-backdrop ${filtersOpen ? "is-open" : ""}`}
+        onClick={() => setFiltersOpen(false)}
+      />
       <div className="main-frame">
         <div className="search-filter-frame">
+          <button
+            type="button"
+            className="mobile-filter-toggle"
+            onClick={() => setFiltersOpen(true)}
+          >
+            <SlidersHorizontal size={18} />
+            Filters
+          </button>
           <div className="search-box">
             <FiSearch className="search-icon" />
 

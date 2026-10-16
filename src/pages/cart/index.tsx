@@ -11,7 +11,7 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 import type { CartItem } from "../../libs/types/search";
 import { serverApi } from "../../libs/enums/config";
-import EmptyCart from "../../components/common/empty-cart";
+import EmptyCart from "../../components/common/empty-books";
 import { motion } from "framer-motion";
 import { useGlobals } from "../../hooks/useGlobal";
 import { messages } from "../../libs/config";

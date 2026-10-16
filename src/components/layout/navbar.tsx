@@ -1,12 +1,16 @@
 import "../../css/main.css";
 import { NavLink } from "react-router-dom";
-import { SearchIcon } from "lucide-react";
+import { Menu, SearchIcon, X } from "lucide-react";
+import { useState } from "react";
 import { useGlobals } from "../../hooks/useGlobal";
 import { serverApi } from "../../libs/enums/config";
 
 export default function Navbar(props: any) {
   const { cartItems, wishlistItems } = props;
   const { authMember } = useGlobals();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
@@ -16,10 +20,11 @@ export default function Navbar(props: any) {
             <img src="/icons/logo.png" alt="" />
           </NavLink>
         </div>
-        <div className="navbar-links">
+        <div className={`navbar-links ${isMenuOpen ? "is-open" : ""}`}>
           <NavLink
             to="/"
             end
+            onClick={closeMenu}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             Home
@@ -27,6 +32,7 @@ export default function Navbar(props: any) {
 
           <NavLink
             to="/books"
+            onClick={closeMenu}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             Books
@@ -35,6 +41,7 @@ export default function Navbar(props: any) {
           {authMember && (
             <NavLink
               to="/profile"
+              onClick={closeMenu}
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               My Page
@@ -43,10 +50,21 @@ export default function Navbar(props: any) {
 
           <NavLink
             to="/about"
+            onClick={closeMenu}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             About
           </NavLink>
+
+          {!authMember && (
+            <NavLink
+              to="/login"
+              onClick={closeMenu}
+              className="mobile-auth-link"
+            >
+              Login
+            </NavLink>
+          )}
         </div>
         <div className="navbar-right">
           <div className="search-box">
@@ -71,11 +89,11 @@ export default function Navbar(props: any) {
           </div>
 
           {!authMember ? (
-            <NavLink to={"/login"}>
+            <NavLink to={"/login"} className="desktop-auth-action">
               <button className="login-btn">Login</button>
             </NavLink>
           ) : (
-            <NavLink to={"/profile"}>
+            <NavLink to={"/profile"} className="desktop-auth-action">
               <img
                 src={
                   authMember?.memberImage
@@ -94,6 +112,15 @@ export default function Navbar(props: any) {
             </NavLink>
           )}
         </div>
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((current) => !current)}
+        >
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
     </>
   );

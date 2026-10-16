@@ -27,7 +27,7 @@ export default function Categories() {
               <NavLink to={"/books"}>All categories→</NavLink>
             </div>
           </div>
-          <div className="section-bottom">
+          <div className="section-bottom categories-grid">
             <CategoriesCard />
           </div>
         </div>
